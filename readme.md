@@ -13,8 +13,22 @@
 - float为单精度，占4个字节（精度大概是小数位7位）
 - double为双精度，占8个字节（是浮点型的默认类型，使用float的话末尾加上F）
 
-### 自付类型(char)
+### 字符类型(char)
 - 占2个字节，16位，范围'\u0000' - '\uFFFF' (0-65536)
+
+### 布尔类型(boolean)
+- 用于判断真假，占用4个字节（boolean数组里面，每个则之占用1个字节）
+
+### 基本类型对象的包装类型  
+把基本类型包装一下，成为引用类型，使其成为对象，可以想对象那样操作。
+- byte - Byte
+- short - Short
+- int - Integer
+- long -Long
+- char - Character
+- float - Float
+- double - Double
+- boolean - Boolean
 
 ## 2 引用数据类型
 
