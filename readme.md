@@ -4,4 +4,5 @@
 # 访问控制
 [访问控制](./AccessControl.md)
 
-# JAVA简单内存模型
+# 面向对象
+[面向对象](./objectOriented.md)
