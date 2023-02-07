@@ -27,3 +27,33 @@
 - 非静态内部类可以使用外部类的方法属性
 - 静态内部类无法直接使用外部类的方法属性
 - 分类：非静态/静态/匿名
+
+```java
+public class Outer {
+    private int nums;
+    
+    public void outerMethod() {
+        System.out.println("outer method");
+    }
+
+    public static void staticOuterMethod() {
+        System.out.println("outer method");
+    }
+    
+    // 非静态内部类，可以调用外部属性和成员方法
+    class Inner {
+        public void innerMethod() {
+            System.out.println("inner method");
+            outerMethod(); // 调用外部成员方法
+        }
+    }
+    
+    // 静态的不能调用外部的成员和成员方法
+    static class StaticInner {
+        public void staticInnerMethod() {
+            System.out.println("static inner method");
+            staticOuterMethod(); // 但是可以调用外部类的静态方法
+        }
+    }
+}
+```
