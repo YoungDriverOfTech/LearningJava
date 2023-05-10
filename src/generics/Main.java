@@ -32,7 +32,7 @@ public class Main {
      *            2 直接把已经有的类型范型化（类型擦除） - java的选择，java已经有十多年了，无法重构
      */
     public void demo1() {
-        // 类型擦除 Type erasure
+        // 类型擦除 Type erasure --> 改变了javac的编译器
         List<String> list = new ArrayList<>();
 
         // 原本这句是会被检查住的，但是这种检查只存在编译的阶段，等编译成子节码以后代码就变成了 List list，类型被擦掉了.
