@@ -1,7 +1,7 @@
 package reflection;
 
 public class Animal {
-    String type;
+    public String type;
 
     public Animal() {
     }
