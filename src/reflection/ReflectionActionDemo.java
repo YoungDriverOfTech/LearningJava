@@ -1,8 +1,11 @@
 package reflection;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 
 public class ReflectionActionDemo {
 
@@ -71,6 +74,34 @@ public class ReflectionActionDemo {
 
             // 数据类型
             System.out.println("allField.getType() = " + allField.getType());
+        }
+        System.out.println();
+
+
+        // 5. 获取方法相关信息
+        // 获取该类及其父类的public方法
+        Method[] publicMethods = birdClass.getMethods();
+        for (Method publicMethod : publicMethods) {
+            System.out.println("publicMethod = " + publicMethod);
+
+            // 获取方法的注解
+            Annotation[] annotations = publicMethod.getAnnotations();
+            for (Annotation annotation : annotations) {
+                System.out.println("annotation = " + annotation);
+            }
+
+            // 获取方法信息
+            System.out.println("publicMethod.getName() = " + publicMethod.getName());
+            System.out.println("publicMethod.getReturnType() = " + publicMethod.getReturnType());
+            System.out.println("publicMethod.getParameters() = " + Arrays.toString(publicMethod.getParameters()));
+            System.out.println("publicMethod.getExceptionTypes() = " + Arrays.toString(publicMethod.getExceptionTypes()));
+        }
+        System.out.println();
+
+        // 获取本类的所有方法，包含私有方法，但是不会获取父类的方法
+        Method[] allMethods = birdClass.getDeclaredMethods();
+        for (Method allMethod : allMethods) {
+            System.out.println("allMethod = " + allMethod);
         }
     }
 }
