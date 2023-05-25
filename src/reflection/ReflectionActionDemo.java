@@ -102,6 +102,21 @@ public class ReflectionActionDemo {
         Method[] allMethods = birdClass.getDeclaredMethods();
         for (Method allMethod : allMethods) {
             System.out.println("allMethod = " + allMethod);
+
+            // 获取具体的注解，判断某种类型的注解
+            Annotation[] annotations = allMethod.getAnnotations();
+            for (Annotation annotation : annotations) {
+                if (annotation instanceof  Markable) {
+                    Markable markableAnnotation = (Markable) annotation;
+                    System.out.println("markableAnnotation = " + markableAnnotation.value());
+                }
+            }
         }
+
+        // 6. 获取类的annotation
+        Markable classAnnotation = birdClass.getAnnotation(Markable.class);
+        System.out.println("classAnnotation = " + classAnnotation.value());
+
+
     }
 }
