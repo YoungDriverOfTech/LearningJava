@@ -69,5 +69,10 @@ public class MethodInvokeDemo {
         Object result3 = sumMethod3.invoke(null, "1"); // 传入null，调用的也是静态方法，因为静态方法是属于类的
         System.out.println("result3 = " + result3);
 
+        /**
+         * 动态修改属性
+         * 动态调用构造器
+         */
+
     }
 }
