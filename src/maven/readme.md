@@ -24,3 +24,12 @@ Maven可以对Java项目进行构建，依赖管理
   - groupId：组id，隶属的组织名称，通常是域名反写
   - artifactId：项目名称
   - version：版本号
+
+## 配置仓库
+### 配置本地仓库
+- 通常不需要配置，IDEA初次使用maven时，会自动创建
+- 默认的本地仓库是~/.m2/repository，M2_HOME/conf/settings.xml里配置仓库目录
+- 如果要手动配置本地仓库，到~/目录下面输入mvn命令，则会自动创建一个仓库
+
+### 远程仓库配置
+- 可以到M2_HOME/conf/settings.xml搜索mirror字段
