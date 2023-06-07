@@ -17,3 +17,10 @@ Maven可以对Java项目进行构建，依赖管理
     > export M2_HOME=/Users/xxx/Library/apache-maven-3.9.1  
    > export PATH=$PATH:$M2_HOME/bin
 4. 执行mvn -version验证maven安装完成,(没有配置环境变量的话，就拿bin目录执行./mvn -version)
+
+## 基本概念-坐标
+- 坐标的作用-用来描述资源在仓库中的位置，maven根据坐标来定位资源
+- 组成部分
+  - groupId：组id，隶属的组织名称，通常是域名反写
+  - artifactId：项目名称
+  - version：版本号
