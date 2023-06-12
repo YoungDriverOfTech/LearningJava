@@ -113,3 +113,10 @@ Maven可以对Java项目进行构建，依赖管理
      - 同一个配置文件中(直接依赖)：靠后的覆盖靠前的
 ![routfirst](../../images/routfirst.png)
 ![otherfirst](../../images/otherfirst.png)
+4. 发现依赖冲突  
+   - 命令行：mvn -Dverbose dependency:tree
+   - 插件：Maven helper。安装重启完以后，点击Dependency Analyzer
+5. 解决依赖冲突
+   - 直接依赖正确版本的jar包，根据路径优先原则，直接依赖的层级最浅
+   - 依赖排除：排除掉不希望存在的依赖
+     ![otherfirst](../../images/resolve.png)
