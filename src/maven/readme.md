@@ -33,3 +33,42 @@ Maven可以对Java项目进行构建，依赖管理
 
 ### 远程仓库配置
 - 可以到M2_HOME/conf/settings.xml搜索mirror字段
+
+## pox.xml 配置文件的结构
+- POM（Project Object Model）项目对象模型
+- Maven将项目开发和管理过程抽象成一个项目对象模型
+- 一个基础的pom文件结构可以分为三大块
+  - 基本信息
+  - 坐标配置
+  - 依赖配置
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- 1.基本信息  -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 2.坐标信息  -->
+    <groupId>org.mavendemo</groupId>
+    <artifactId>nonwebapp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>nonwebapp</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- 3.依赖信息  -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
+
+```
