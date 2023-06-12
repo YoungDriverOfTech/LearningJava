@@ -130,3 +130,11 @@ Maven可以对Java项目进行构建，依赖管理
      - 提升团队间开发合作效率
 7. 新项目创建时候，自动利用自己的maven
 File -> new project setup
+
+## 在POM中配置java版本
+```xml
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+```
