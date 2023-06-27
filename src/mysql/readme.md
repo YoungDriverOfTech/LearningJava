@@ -135,3 +135,25 @@ MySQL常用的索引结构有：哈希索引（HASH）、B树索引（B-TREE）�
 >> 查询条件为 where a > 1 and b = 1 and c = 2 可以使用索引，但使用的是索引(a)，不能使用索引(a, b, c)  
 
 **所以，创建联合索引时经常把最常用的列放在最左**
+
+## 索引的使用
+### 创建
+
+**非唯一索引**
+```sql
+ALTER TABLE `table_name` ADD INDEX `index_name` (`field1`, `field2`, ...);
+```
+
+**唯一索引**
+```sql
+ALTER TABLE `table_name` ADD UNIQUE INDEX `index_name` (`field1`, `field2`, ...);
+```
+
+### 删除
+```sql
+ALTER TABLE `table_name` DROP INDEX `index_name1`, DROP INDEX `index_name2`;
+```
+
+### 使用explain查看是否走了索引
+key 表示本次查询使用的索引，rows 表示查询扫描行数。
+![img.png](../../images/explain.png)
