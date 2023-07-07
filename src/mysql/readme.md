@@ -161,3 +161,5 @@ ALTER TABLE `table_name` DROP INDEX `index_name1`, DROP INDEX `index_name2`;
 ### 使用explain查看是否走了索引
 key 表示本次查询使用的索引，rows 表示查询扫描行数。
 ![img.png](../../images/explain.png)
+
+## 事务
