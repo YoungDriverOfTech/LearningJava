@@ -43,3 +43,123 @@ A：高层模块依赖底层模块，违反了依赖倒置原则。
 ![img.png](../../images/level2cache.png)
 
 ![img.png](../../images/solution.png)
+
+# SpringIOC 实现 - xml配置文件方式
+## 步骤
+1, 引入 spring-context 依赖(不要用6.x的，不支持java8)
+```xml
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.3.29</version>
+</dependency>
+
+```
+
+2, 定义类
+```java
+public class User {
+    private String name;
+    private Integer age;
+    private Account account;
+    
+    // getter / setter
+}
+
+public class Account {
+    private Integer money;
+
+    // getter / setter
+}
+```
+
+3, 配置xml文件  
+配置文件使用setter方法进行属性注入
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="user" class="User">
+        <property name="name" value="Vincent"/>
+        <property name="age" value="18"/>
+        <property name="account" ref="account"/><!-- 引用account的bean -->
+    </bean>
+    
+    <bean id="account" class="Account">
+        <property name="money" value="12345"/>
+    </bean>
+</beans>
+```
+
+4, 从springIOC容器中获取bean
+```java
+public class Main{
+    @Test
+    public void testContext() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
+        Object user = applicationContext.getBean("user");
+        System.out.print(user);
+    }
+}
+```
+
+5, Set方法注入
+使用 set 方法完成依赖注入。利用反射调用类的无参构造函数，再调用 set 方法完成依赖注入。
+
+![img.png](setinject.png)
+
+6, 构造器注入
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    第一种方式：index-->
+    <bean id="user" class="User">
+        <constructor-arg index="0" value="Vincent"/>
+        <constructor-arg index="1" value="Vincent"/>
+        <constructor-arg index="2" ref="Vincent"/>
+    </bean>
+
+    <!--    第一种方式：name-->
+    <bean id="account" class="Account">
+        <constructor-arg index="0" value="Vincent"/>
+        <constructor-arg index="1" value="Vincent"/>
+        <constructor-arg index="2" ref="Vincent"/>
+    </bean>
+</beans>
+```
+
+7, 自动装配
+自动装配是针对 bean 类型的属性，可以不指定属性的 ref，通过自动装配的方式自动完成注入。
+第一种方式：byType，根据类型自动装配。  
+如果只有一个 bean 的类型属于 property 的类型，那么自动完成装配。  
+```xml
+<!-- 基础类型的注入 -->
+<bean id="user" class="User" autowire="byType">
+    <property name="name" value="Vincent"/>
+    <property name="age" value="18"/>
+</bean>
+
+<bean id="account" class="Account">
+    <property name="money" value="12345"/>
+</bean>
+
+<!-- 基础名字的注入 -->
+<bean id="user" class="User" autowire="byName">
+    <property name="name" value="Vincent"/>
+    <property name="age" value="18"/>
+</bean>
+    
+<bean id="account" class="Account">
+    <property name="money" value="12345"/>
+</bean>
+```
