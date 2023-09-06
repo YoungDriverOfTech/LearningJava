@@ -111,7 +111,7 @@ public class Main{
 5, Set方法注入
 使用 set 方法完成依赖注入。利用反射调用类的无参构造函数，再调用 set 方法完成依赖注入。
 
-![img.png](setinject.png)
+![img.png](../../images/setinject.png)
 
 6, 构造器注入
 
@@ -163,3 +163,4 @@ public class Main{
     <property name="money" value="12345"/>
 </bean>
 ```
+
