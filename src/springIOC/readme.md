@@ -1,4 +1,4 @@
-# IOC
+# 配置文件IOC
 ## JavaBean
 
 ### 谁创建javabean
@@ -162,5 +162,95 @@ public class Main{
 <bean id="account" class="Account">
     <property name="money" value="12345"/>
 </bean>
+```
+
+# 注解IOC
+## 实现步骤
+1, 引入spring-context 依赖(不要用6.x的，不支持java8)
+2, 定义类
+3, 使用注解进行标注
+```java
+@Component
+public class User {
+    @Value("1234")
+    private String name;
+
+    @Value(18)
+    private Integer age;
+    
+    @Autowired
+    private Account account;
+    
+    // getter / setter
+}
+
+@Component
+public class Account {
+
+    @Value("1234")
+    private Integer money;
+
+    // getter / setter
+}
+```
+
+4, 配置spring扫描路径
+```xml
+<beans>
+    <context:component-scan base-package="com.xxx.xxx"/>
+</beans>
+```
+
+5, 容器中获取bean
+
+## 标记bean的注解 @Component @Service @Controller @Repository
+
+### @Component
+Spring扫描到装饰有@Component注解的类，会给这个类创建bean，并放入spring ioc容器  
+@Component注解的value是bean的id，如果没有配置value，那么去类名首字母小写为bean的id
+
+### 剩下其他3个注解
+@Service、@Controller、@Repository： 这三个注解上都有 @Component，这三个注解的作用跟 @Component 是一样的。  
+区别在于这三个注解用于装饰不同层的类。 @Controller 装饰 Controller 层， @Service 用于装饰 Service层， @Repository 用于装饰 Dao 层。  
+如果只看实际效果的话， @Component 、@Service、@Controller、@Repository 是一样的。  
+
+
+## 实现注入的注解 @Value
+@Value 用于注入简单类型的属性。可以作用在字段、方法（set方法）、参数（构造方法的参数）上。
+
+## 实现注入的注解 @Autowired
+@Autowired 用于注入 bean 类型的属性。可以作用在字段、set方法、构造方法的参数、构造方法上。
+
+@Autowired 优先根据类型装配。  
+> 先按照属性的类型寻找 bean，如果该类型只找到一个bean，直接装配  
+> 如果该类型找到多个bean，再在这些类型匹配的 bean 之中找与属性名称匹配的，找到则装配  
+> 在多个类型匹配的 bean 中找不到名称匹配的，装配失败，抛异常。  
+> @Autowired 可配合 @Qualifier 使用， @Qualifier 用于指定使用装配 bean 的名称  
+
+## 实现注入的注解 @Resource
+@Resource 优先根据名称装配。名称是 @Resource 的 name，如果不配置 name，以属性名为名称。  
+先按名称寻找 bean，找到则检查类型是否匹配，类型匹配注入，类型不匹配抛异常  
+按照名称找不到 bean，按属性的类型寻找，若按类型只找到一个 bean 则装配，按类型找到多个则抛异常。  
+
+
+## IOC 全注解编程
+### 用java类替换spring xml配置文件
+```java
+@Configuration
+@ComponentScan(basePackages = "com.xx.xx")
+public class SpringConfiguration{
+    
+}
+```
+
+### 使用 AnnotationConfigApplicationContext 
+```java
+class Demo {
+    @Test
+    public void demo() {
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        Object obj = applicationContext.getBean("xxx");
+    }
+}
 ```
 
