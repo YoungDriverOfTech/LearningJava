@@ -255,3 +255,116 @@ class Demo {
 ```
 
 # IOC 进阶
+## Bean的作用域
+- 默认情况下，Spring IoC 容器创建的 bean 作用于单例（singleton）
+- 所谓单例，就是在 Spring IoC 容器中这个类只会创建一个实例
+- 可以将 scope 配置为 prototype， 表示这个 bean 是多例的。
+- 多例，就是每次从 Spring IoC 容器中获取 bean，都会创建一个新的实例 
+
+### 四种作用域
+- singleton：单例，Spring 的默认 scope，Spring容器只创建唯一一个bean的实例，所有该对象的引用都共享这个实例，并且Spring在创建第一次后，会在Spring的IoC容器中缓存起来，之后不再创建
+- prototype：原型，也即多例，每次调用或请求这个bean都会创建一个新的实例。
+- 还有 2 个使用较少的作用域，仅在 Web 应用程序中使用：
+  - request：每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效。
+  - session：表示该针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP session内有效。
+
+## Bean的获取
+### 方式1:构造函数
+- 没有显示声明构造函数时，调用无参数构造函数实例化
+- 声明了有参构造函数，未声明无参构造函数，调用有参构造函数实例化
+- 同时声明了有参、无参构造函数，调用无参构造函数实例化
+
+### 方式2:FactoryBean
+- 定义实现 FactoryBean 接口的工厂类
+- 在工厂类的 getObject 方法中定义获取 bean 的逻辑
+- Factory 也是被 Spring IoC 容器管理的 bean
+```java
+@Component
+public class AppleFactory implements FactoryBean<Apple> {
+    
+    @Override
+    public Apple getObject() throws Exception {
+        System.out.println("get obj called");
+        return new Apple();
+    }
+
+    @Override
+    public Clazz<?> getObjectType() throws Exception {
+        return Apple.class;
+    }
+
+    @Override
+    public boolean isSingleton() throws Exception {
+        return FactoryBean.super.isSingleton();
+    }
+}
+```
+
+### BeanFactory 和 FactoryBean 的区别
+这是一道常见面试题
+- BeanFactory 是接口，定义了 Spring IoC 容器实现的规范，是各种 IoC 容器类的顶层接口。
+- FactoryBean 是 bean，是负责生产 bean 的 工厂 bean。
+
+## Bean的生命周期
+### 5步生命周期
+说明：Spring 只对单例 bean 进行完整的生命周期管理。多例 bean Spring 只负责创建。
+> 实例化 - 属性注入 - 初始化 - 使用 - 销毁
+![img.png](../../images/5steps.png)
+![img_1.png](../../images/img_1.png)
+![img_2.png](../../images/img_2.png)
+
+### 7步生命周期
+> 实例化 - 属性注入 - bean后处理器before - 初始化 - bean后处理器after - 使用 - 销毁
+![img_1.png](../../images/7steps.png)
+![img_3.png](../../images/img_3.png)
+![img_4.png](../../images/img_4.png)
+
+- BeanPostProcessor 是一个接口，我们叫 Bean 后处理器
+- BeanPostProcessor 接口有两个方法
+  - postProcessBeforeInitialization，在初始化方法执行前调用
+  - postProcessAfterInitialization，在初始化方法执行后调用
+- 实现了 BeanPostProcessor 的类也是一个 bean，在同一个 Spring IoC 容器中的 bean 被创建后， BeanPostProcessor 的 before、after 方法将被调用。
+
+--- 
+![img.png](../../images/img.png)
+![img_5.png](../../images/img_5.png)
+- BeanPostProcessor 的使用场景
+  - postProcessBeforeInitialization：允许程序员在 bean 初始化方法被执行前，执行一段逻辑。
+  - postProcessAfterInitialization：允许程序员在 bean 初始化方法被执行后，执行一段逻辑。典型应用AOP，使用代理（Proxy）将初始化完成的 bean 包装起来。
+
+### 生命周期扩展
+![img_6.png](../../images/img_6.png)
+如果 bean 实现了 BeanNameAware, BeanFactoryAware, BeanClassLoaderAware
+那么在属性注入后 aware 相关方法会被调用
+> ![img_7.png](../../images/img_7.png)
+> ![img_8.png](../../images/img_8.png)
+> Aware 表示“意识到”、“被通知到”，Spring IoC 容器会在某些事件发生后，对关心这些事件的 bean 进行通知。例如某个 bean 实现 BeanNameAware 接口，表示这个 bean 想知道自己的 beanName，Spring IoC 会在 beanName 确定后调用 bean 的 setBeanName 方法进行通知。
+
+
+# Spring 循环依赖问题
+## 使用set方法来解决循环依赖
+- 如果使用的是 set 注入，循环依赖可以解决
+- 如果使用的是构造函数注入，循环依赖不能解决，因为对于构造函数注入方式，“实例化 bean”和“属性注入”是同时完成的。
+> ![img_9.png](../../images/img_9.png)
+> ![img_10.png](../../images/img_10.png)
+
+## 三级缓存
+### Spring 使用三级缓存解决循环依赖问题，所有三级缓存的数据结构都是map，key是bean id。
+- 第一级缓存：存放的是成品 bean，也就是初始化完成后的 bean，可以被外部直接使用。
+- 第二级缓存：存放的是半成品 bean，还没有完成初始化，不能被外部使用。
+- 第三级缓存：存放的是生产 bean 的 ObjectFactory， ObjectFactory 定义了一段创建 bean 的逻辑。
+> ![img_11.png](../../images/img_11.png)
+
+### 图示
+![img_12.png](../../images/img_12.png)
+
+***为什么解决循环依赖要使用三级缓存？***  
+
+**思考：如果我们在目标 bean 上定义了 AOP 增强，那放入缓存的是“原始 bean” 还是“代理 bean”？**
+- 能被外部引用的必须放入代理 bean
+- 三级缓存中，一、二级缓存能被外部引用，放入代理 bean，三级缓存放入原始 bean。
+
+**Spring 设计原则：在 bean 初始化方法执行完成之后，再生成其 AOP 代理对象。**
+- 当发生循环依赖时，Spring 被迫在初始化方法执行前（放入二级缓存时）就创建代理对象。
+- 如果不发生循环依赖，那么 Spring 还是可以在初始化完成后，放入一级缓存前创建代理对象。
+- 如果只有两级缓存，那么不论是否发生循环依赖，Spring 都要在初始化方法执行前提前创建代理对象并放入二级缓存。因此，相较仅使用二级缓存，三级缓存的优势是：存在 AOP 时，尽可能晚地创建代理对象，仅在发生循环依赖时，提前创建代理对象。
