@@ -24,7 +24,7 @@
 - 目标对象（Target）：被织入增强的对象。
 - 代理对象（Proxy）：一个目标对象被织入增强后产生的新对象。
 
-![img.png](aopekyword.png)
+![img.png](../../images/aopekyword.png)
 
 ## spring aop实现
 ### 1, 引入依赖
@@ -141,3 +141,4 @@ class Main {
 }
 ```
 
+# 事务管理
