@@ -48,3 +48,34 @@
 ![img_11.png](images/img_11.png)
 
 方案 3：写代码的时候避免类之内的方法相互调用，写成类之间的方法相互调用
+
+# 事务传播行为
+## @Transactional rollbackFor 属性
+
+- @Transactional 通过 rollbackFor 属性配置当目标方法抛出什么类型的异常时执行回滚。
+- 如果不配置 rollbackFor，默认抛出 RuntimeException、Error 及这两个类的子类时回滚。
+- 如果配置了 rollbackFor，则增加触发回滚的异常类型，不会覆盖 RuntimeExcetion、Error。
+- 如果希望只要出现异常就回滚的话，配置 @Transactional rollbackFor = Exception.class 
+
+## Spring 事务传播行为
+- @Transactional 通过 propagation 属性配置事务的“传播行为”。
+- 传播行为，是指当一个事务方法被另一个事务方法调用时，如果处理这些事务的关系。
+- 例如：methodA 事务方法调用 methodB 事务方法时，methodB 是继续在调用者 methodA 的事务中运行呢，还是为自己开启一个新事务运行，这就是由 methodB 的事务传播行为决定的。
+- Spring 事务可以配置 7 类传播行为：
+  - REQUIRED：Spring默认的事务传播行为。如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
+  - SUPPORTS：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续执行。
+  - MANDATORY：如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。
+  - REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则挂起当前事务。（挂起事务就是不管外面调用方法的事务，被调用的方法有自己的事务）
+  - NOT_SUPPORTED：以非事务的方式执行操作，如果当前存在事务，则挂起当前事务。（如果调用方有事务，则被调用方不受这个事务控制，以非事务的方式运行）
+  - NEVER：以非事务的方式执行操作，如果当前存在事务，则抛出异常。
+  - NESTED：如果当前存在事务，则在嵌套事务内执行；如果当前没有事务，则创建一个新的事务。
+
+## 对表比较像的传播行为
+对比 REQUIRED、 REQUIRES_NEW 、 NESTED
+相同点：
+- 如果当前没有事务，则创建一个新的事务
+
+不同点：
+- 存在事务时， REQUIRED 是加入当前事务，一起回滚，一起提交
+- 存在事务时， REQUIRES_NEW 是不加入当前事务，新事务独立回滚，独立提交
+- 存在事务时， NESTED 是在嵌套事务执行，跟当前事务一起提交，但可以独立回滚
