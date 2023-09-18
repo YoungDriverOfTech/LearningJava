@@ -5,7 +5,7 @@
 - Aws的区域遍布世界，区域的名字可以是us-east-1, eu-west-3
 - 一个区域是数据中心的集群
 - 大多数aws的服务是分区域的
-  ![img.png](img.png)
+  ![img.png](images/img.png)
 
 ### 可用区 - Availability Zones
 
@@ -14,7 +14,7 @@
 - 每个可用区是一个或者多个的离散的数据中心，他们有冗余的殿宇，网络和链接
 - 他们之间彼此隔离，出现的灾难的时候也不会相互影响
 - 它们通过高带宽连接，超低延迟网络
-  ![img_1.png](img_1.png)
+  ![img_1.png](images/img_1.png)
 
 ## AWS IAM 用户管理 - AWS Identity and Access Management
 ### 用户和组
@@ -23,29 +23,29 @@
 - 用户是在公司或者组织里面干活儿的人
 - 组包含用户，但是不能包含其他组
 - 用户可以不用属于某个组，也可以属于多个组
-  ![img_2.png](img_2.png)
+  ![img_2.png](images/img_2.png)
 
 ### 用户权限 - IAM:Permissions
 - 用户和组可以被Json 文档描述，成为政策（policies）
 - 这些政策定义了用户的权限
 - AWS遵循最小优先原则，即不要给用户的权限超过他的需求
-  ![img_3.png](img_3.png)
+  ![img_3.png](images/img_3.png)
 
 ### 怎么创建新用户和组
 - 搜索IAM，左边栏可以看到user 和 groups
 - 创建user/group以后，给group赋予AdministratorAccess权限，那么管理员权限的用户就创建好了
 - 点击dashboard后可以编辑用户名的别名，这样就可以用IAM而不是跟用户来login了
-  ![img_4.png](img_4.png)
+  ![img_4.png](images/img_4.png)
 
 ### 权限继承 - IAM Policies inheritance
 白话就是操作组的权限，或者操作人的权限。因为人可以不属于组，所以可以对人直接加权限
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
+![img_5.png](images/img_5.png)
+![img_6.png](images/img_6.png)
 
 ### 密码保护政策 - Password Policy
 - 对密码进行一系列的保护措施 policy，比如密码长度，复杂度，定期修改密码
-  ![img_7.png](img_7.png)
-  ![img_8.png](img_8.png)
+  ![img_7.png](images/img_7.png)
+  ![img_8.png](images/img_8.png)
 
 ### 动态密码令牌 - MFA （Multi Factor Authentication）
 - 就是一个相当于QQ令牌的东西，每次login的时候，需要动态密码
@@ -63,7 +63,7 @@
 - 可以直接访问开放AWS的开放API
 - 开源地址： https://github.com/aws/aws-cli
 - 安装： 搜索 install aws cli mac version 2, 下载v2版本
-![img_9.png](img_9.png)
+![img_9.png](images/img_9.png)
 - 生成key以及配置AWS CLI
   - IAM - User - Security credentials - Generate Access Key - Command Line Interface (CLI)
   - ```shell
@@ -81,7 +81,16 @@
 - 这个Role和之前的Policy不太一样，这个Role是给Aws本身的服务上权限
   - 比如某个Aws服务想要调用另一种服务来做事儿，那么就需要给这个服务上对象的权限
   - 比如EC2的虚拟机想要获取IAM里面所有的用户，那么就需要给EC2调用IAM接口的权限
-- ![img_10.png](img_10.png)
-- ![img_11.png](img_11.png)
-- ![img_12.png](img_12.png)
-- ![img_13.png](img_13.png)
+- ![img_10.png](images/img_10.png)
+- ![img_11.png](images/img_11.png)
+- ![img_12.png](images/img_12.png)
+- ![img_13.png](images/img_13.png)
+
+## IAM Security Tools
+### IAM Credentials Report(Account level)
+- 生成一个文件，里面记录了所有user的所有行为。用来查看哪些user的权限不需要了，可以给他去掉，满足最小优先原则
+![img_14.png](images/img_14.png)
+
+### IAM Access Advisor(User level)
+- 展示一个用户的权限赋予情况和这些权限上次使用时间
+![img_15.png](images/img_15.png)
