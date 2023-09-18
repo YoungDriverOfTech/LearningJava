@@ -37,3 +37,7 @@
 - 点击dashboard后可以编辑用户名的别名，这样就可以用IAM而不是跟用户来login了
 ![img_4.png](img_4.png)
 
+### 权限继承 - IAM Policies inheritance
+白话就是操作组的权限，或者操作人的权限。因为人可以不属于组，所以可以对人直接加权限
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
