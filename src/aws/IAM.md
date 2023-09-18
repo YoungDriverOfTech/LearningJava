@@ -65,3 +65,8 @@
 - 安装： 搜索 install aws cli mac version 2, 下载v2版本
 ![img_9.png](img_9.png)
 
+### 什么是AWS SDK
+- 能用代码去访问和管理AWS服务
+- 嵌入在开发的APP中
+- 支持多种编程语言
+
