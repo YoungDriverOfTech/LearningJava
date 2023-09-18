@@ -41,3 +41,13 @@
 白话就是操作组的权限，或者操作人的权限。因为人可以不属于组，所以可以对人直接加权限
 ![img_5.png](img_5.png)
 ![img_6.png](img_6.png)
+
+### 密码保护政策 - Password Policy
+- 对密码进行一系列的保护措施 policy，比如密码长度，复杂度，定期修改密码
+![img_7.png](img_7.png)
+![img_8.png](img_8.png)
+
+### 动态密码令牌 - MFA （Multi Factor Authentication）
+- 就是一个相当于QQ令牌的东西，每次login的时候，需要动态密码
+- 右上角 - secret credentials - Assign MFA - 扫码下载app，输入两遍动态密码，绑定令牌即可
+
