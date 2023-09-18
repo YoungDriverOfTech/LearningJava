@@ -64,6 +64,13 @@
 - 开源地址： https://github.com/aws/aws-cli
 - 安装： 搜索 install aws cli mac version 2, 下载v2版本
 ![img_9.png](img_9.png)
+- 生成key以及配置AWS CLI
+  - IAM - User - Security credentials - Generate Access Key - Command Line Interface (CLI)
+  - ```shell
+    aws configure
+    # input access key / secret key / region
+    aws iam list-users # 列出所有用户来检验是否已经配置成功
+    ```
 
 ### 什么是AWS SDK
 - 能用代码去访问和管理AWS服务
