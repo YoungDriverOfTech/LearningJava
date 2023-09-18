@@ -77,3 +77,11 @@
 - 嵌入在开发的APP中
 - 支持多种编程语言
 
+## 给AWS的服务上权限 - IAM Roles For Services
+- 这个Role和之前的Policy不太一样，这个Role是给Aws本身的服务上权限
+  - 比如某个Aws服务想要调用另一种服务来做事儿，那么就需要给这个服务上对象的权限
+  - 比如EC2的虚拟机想要获取IAM里面所有的用户，那么就需要给EC2调用IAM接口的权限
+- ![img_10.png](img_10.png)
+- ![img_11.png](img_11.png)
+- ![img_12.png](img_12.png)
+- ![img_13.png](img_13.png)
