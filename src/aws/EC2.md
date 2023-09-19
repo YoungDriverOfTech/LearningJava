@@ -14,3 +14,12 @@
 ![img_2.png](img_2.png)
 
 # EC2
+## 基础
+
+- EC2 = Elastic Compute Cloud = Infrastructure as a Service
+- 主要包括
+  - 租虚拟机（EC2）
+  - 在虚拟设备上存储数据（EBS）
+  - 跨机器分布式负载（ELB）
+  - 自动伸缩服务（ASG）
+
