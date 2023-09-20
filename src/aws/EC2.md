@@ -23,3 +23,17 @@
   - 跨机器分布式负载（ELB）
   - 自动伸缩服务（ASG）
 
+## 建立第一个EC2 Instance
+
+### 步骤
+- 搜索EC2 - 选择左边栏Instances - Launch Instance
+![img_3.png](img_3.png)
+- 配置选择默认的即可，keypair生成一个新的，用来login
+![img_4.png](img_4.png)
+- 配置网络和安全组
+![img_5.png](img_5.png)
+- Advance Details有用户数据的选项，这个是当首次launch instance之后会只执行一次的脚本
+![img_6.png](img_6.png)
+- 给分配的公网IP，每次重启都会变化（注意点）
+- 访问公网IP，可以看到之前在user data里面执行脚本生成的html的文件
+![img_7.png](img_7.png)
