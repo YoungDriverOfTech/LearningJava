@@ -66,3 +66,41 @@
 
 **详细参见上面的网站**
 
+## 安全组
+### 介绍
+- 安全组是aws网络安全的基石
+- 控制流量的进出
+- 安全组只包含允许的规则
+- 安全组可以背ip和其他安全组引用
+![img_10.png](img_10.png)
+
+### 安全组详细介绍
+- 扮演防火墙的角色
+- 他们控制：
+  - 接入端口
+  - 授权ip范围
+  - 控制inbound 网络
+  - 控制outbound 网络
+![img_11.png](img_11.png)
+![img_12.png](img_12.png)
+
+### 安全组须知知识点
+- 可以绑定到多个实例
+- 依附于region/vpc
+- 最好单独维护一个ssh的安全组
+- 如果app不能反问（timeout），那是安全组的问题
+- 如果给出了connection refused错误，那是app的错误或者app没有被launched
+- 所有的入口流量默认被blocked
+- 所有的出口流量默认放开
+
+### 安全组之间相互引用
+![img_13.png](img_13.png)
+
+### 安全组端口须知
+- 22：SSH，log into Linux实例
+- 21：FTP（File Transfer Protocol） 上传文件
+- 22：SFTP（Secure File Transfer Protocol） 使用SSH上传文件
+- 80：HTTP 链接非安全的网站
+- 443：HTTPS 链接安全的网站
+- 3389：RDP（Remote Desktop Protocol） log into到一个Windows实例
+
