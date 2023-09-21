@@ -104,3 +104,17 @@
 - 443：HTTPS 链接安全的网站
 - 3389：RDP（Remote Desktop Protocol） log into到一个Windows实例
 
+## 链接EC2
+### 本地连接
+```shell
+ssh -i key ec2-user@ip
+```
+
+### 网页链接
+![img_14.png](img_14.png)
+![img_15.png](img_15.png)
+
+**给EC2追加role**
+![img_16.png](img_16.png)
+![img_17.png](img_17.png)
+![img_18.png](img_18.png)
