@@ -118,4 +118,3 @@ ssh -i key ec2-user@ip
 ![img_16.png](img_16.png)
 ![img_17.png](img_17.png)
 ![img_18.png](img_18.png)
-
