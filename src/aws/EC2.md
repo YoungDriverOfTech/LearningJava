@@ -191,3 +191,37 @@ ssh -i key ec2-user@ip
 ![img_25.png](img_25.png)
 ![img_26.png](img_26.png)
 
+## 弹性网络接口 - Elastic Network Interfaces（ENI）
+- VPC中的逻辑组件，代表了一个虚拟网卡
+- ENI有下列属性
+  - 一个主内网ip，一个副内网ip
+  - 每个内网IP有一个弹性ip
+  - 一个公网ip
+  - 一个或者多个安全组
+  - 一个MAC地址
+- 可以独立创建ENI，并且绑定到EC2的实例上
+- 必须在一个特定的可用区
+![img_27.png](img_27.png)
+![img_28.png](img_28.png)
+![img_29.png](img_29.png)
+
+## EC2休眠 - Hibernate
+- 在重启EC2实例的时候，下面的事情将会发生
+  - OS启动， EC2的userdata被执行
+  - 自己的App启动，缓存热身（花时间）
+
+### 概念
+- 内存状态会被保存
+- 实例启动会更快
+- 内存状态被写进一个文件，这个文件存在根EBS数据卷上面
+- 根EBS数据卷必须是加密的
+
+使用case
+- 长时间运行的任务
+- 需要保存内存状态
+
+![img_30.png](img_30.png)
+
+在launch新的实例的时候
+![img_31.png](img_31.png)
+![img_32.png](img_32.png)
