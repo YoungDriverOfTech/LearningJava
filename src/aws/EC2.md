@@ -258,3 +258,13 @@ ssh -i key ec2-user@ip
 ![img_37.png](img_37.png)
 ![img_38.png](img_38.png)
 ![img_39.png](img_39.png)
+
+# AMI - Amazon Machine Image
+## 概念
+- 就是一个类似docker镜像的东西，只不过这AMI是一个EC2实例的镜像
+- 可以通过AMI镜像快速launch一个EC2实例，可以跨可用区launch
+
+## 图解
+![img_40.png](img_40.png)
+![img_41.png](img_41.png)
+![img_43.png](img_43.png)
