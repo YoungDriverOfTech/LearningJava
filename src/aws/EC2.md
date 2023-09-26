@@ -239,3 +239,22 @@ ssh -i key ec2-user@ip
 ![img_33.png](img_33.png)
 ![img_34.png](img_34.png)
 ![img_35.png](img_35.png)
+
+## EBS Snapshots 数据卷快照
+### 概念
+- 就是EBS的一个备份，制作快照的时候不用detach EBS，但是推荐detach
+- 可以跨可用区甚至是region复制快照
+![img_36.png](img_36.png)
+
+### 特点
+- EBS快照归档
+  - 移动快照到归档层（archive tier）便宜75%，从归档层回复快照需要花费1-3天
+- 循环使用的桶 - Recycle Bin
+  - 建立一个桶，桶里面有保存规则（比如保存多少天，范围是1天到1年），这个桶用来存被删除的快照
+- Fast Snapshot Restore（FSR）
+  - 0延迟恢复快照，很花钱
+
+### 图解
+![img_37.png](img_37.png)
+![img_38.png](img_38.png)
+![img_39.png](img_39.png)
