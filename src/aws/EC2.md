@@ -225,3 +225,17 @@ ssh -i key ec2-user@ip
 在launch新的实例的时候
 ![img_31.png](img_31.png)
 ![img_32.png](img_32.png)
+
+# EC2 - Instance Storage 实例存储
+## EBS Volume - 数据卷
+### 概念
+- EBS - Elastic Block Store 就是一个网络优盘，可以mount到EC2上面
+- 可以持久化数据，一次只能mount到一个实例上，区分可用区
+- 每次创建实例，都会创建一个root的EBS数据卷
+  - root数据卷默认在EC2被删除的时候删除，但是可以改
+  - 非root的EBS数据卷，默认EC2被删除的时候保留
+
+### 图解
+![img_33.png](img_33.png)
+![img_34.png](img_34.png)
+![img_35.png](img_35.png)
