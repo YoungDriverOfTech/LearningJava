@@ -268,3 +268,15 @@ ssh -i key ec2-user@ip
 ![img_40.png](img_40.png)
 ![img_41.png](img_41.png)
 ![img_43.png](img_43.png)
+
+# EC2 Instance Store
+## 概念
+- EBS是网络硬盘，性能好，但也是有限制
+- 如果要高性能，用EC2 Instance Store。因为这个是硬件形式安装在EC2中
+  - 更好io表现
+  - 实例被删除的话，EC2 Instance Store就丢了
+  - 适合做buffer，cache，temporary content
+  - 如果硬件失效，有丢数据风险
+
+## EBS Multi-Attach 提供单个数据卷mount都多个EC2上
+![img_44.png](img_44.png)
