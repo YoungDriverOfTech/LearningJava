@@ -280,3 +280,26 @@ ssh -i key ec2-user@ip
 
 ## EBS Multi-Attach 提供单个数据卷mount都多个EC2上
 ![img_44.png](img_44.png)
+
+# EBS Encryption EBS加密
+## 概念
+- 当加密一个EBS以后，会发生下面的事
+  - 数据被加密
+  - 快照被加密，通过快照创建出的EBS 数据卷也被加密
+- 加密解密由AWS完成，不需要自己干涉
+- 加密对EC2延迟几乎吴映香
+- 拷贝一个非加密的快照时，允许对其加密
+
+## 操作顺序
+- 创建一个EBS volume的数据卷，非加密的
+- 使用拷贝创建一个EBS快照，这时候也不加密
+- 从上面的快照复制一个新的快照，这时候要加密
+- 从快照创建一个新的EBS Volume，这时数据卷已经被加密
+- Attach加密的数据卷到EC2上
+
+![img_45.png](img_45.png)
+![img_46.png](img_46.png)
+![img_47.png](img_47.png)
+![img_48.png](img_48.png)
+![img_49.png](img_49.png)
+![img_50.png](img_50.png)
