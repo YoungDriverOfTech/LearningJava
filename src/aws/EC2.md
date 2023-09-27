@@ -303,3 +303,22 @@ ssh -i key ec2-user@ip
 ![img_48.png](img_48.png)
 ![img_49.png](img_49.png)
 ![img_50.png](img_50.png)
+
+# EFS - Elastic File System
+## 概念
+- 就是数据卷，NFS。但是和EBS不同的是，这个可以mount到多个EC2上
+- EFS可以跨可用区
+- 高可用，可扩展，有点贵
+- 通过安全组来控制哪个EC2可以访问EFS
+![img_51.png](img_51.png)
+
+## 使用
+创建EFS，mount到EC2上即可
+![img_52.png](img_52.png)
+
+## EBS vs EFS
+### 对比
+- 只能attach到一个实例（除了多重attach的 io1 / io2）
+- 锁可用区
+- EFS可以mount到超过100多个EC2上
+- EFS比EBS贵
