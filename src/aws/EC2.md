@@ -1,17 +1,17 @@
 # 预算 - Budget
 ## 使用根用户，开启admin用户查看bill权限
 右上 - Account - IAM user and role access to Billing information
-![img.png](img.png)
+![img.png](images/iimg.png)
 
 ## 查看服务收费
 右上 - Billing Dashboard - Bills（left side） - Charge by services
-![img_1.png](img_1.png)
+![img_1.png](images/iimg_1.png)
 
 ## 免费使用的额度 - free tier
 这个菜单标记了现在免费的额度使用了多少了
 
 ## 创建费用通知
-![img_2.png](img_2.png)
+![img_2.png](images/iimg_2.png)
 
 # EC2
 ## 基础
@@ -27,16 +27,16 @@
 
 ### 步骤
 - 搜索EC2 - 选择左边栏Instances - Launch Instance
-![img_3.png](img_3.png)
+![img_3.png](images/iimg_3.png)
 - 配置选择默认的即可，keypair生成一个新的，用来login
-![img_4.png](img_4.png)
+![img_4.png](images/iimg_4.png)
 - 配置网络和安全组
-![img_5.png](img_5.png)
+![img_5.png](images/iimg_5.png)
 - Advance Details有用户数据的选项，这个是当首次launch instance之后会只执行一次的脚本
-![img_6.png](img_6.png)
+![img_6.png](images/iimg_6.png)
 - 给分配的公网IP，每次重启都会变化（注意点）
 - 访问公网IP，可以看到之前在user data里面执行脚本生成的html的文件
-![img_7.png](img_7.png)
+![img_7.png](images/iimg_7.png)
 
 ## EC2实例的类型
 ### Overview
@@ -52,7 +52,7 @@
   - 计算
   - 内存
   - 网络
-![img_8.png](img_8.png)
+![img_8.png](images/iimg_8.png)
 
 ### 计算优化型
 - 擅长高性能计算任务
@@ -62,7 +62,7 @@
   - 高性能计算
   - 科学模型，机器学习
   - 专属服务器
-![img_9.png](img_9.png)
+![img_9.png](images/iimg_9.png)
 
 **详细参见上面的网站**
 
@@ -72,7 +72,7 @@
 - 控制流量的进出
 - 安全组只包含允许的规则
 - 安全组可以背ip和其他安全组引用
-![img_10.png](img_10.png)
+![img_10.png](images/iimg_10.png)
 
 ### 安全组详细介绍
 - 扮演防火墙的角色
@@ -81,8 +81,8 @@
   - 授权ip范围
   - 控制inbound 网络
   - 控制outbound 网络
-![img_11.png](img_11.png)
-![img_12.png](img_12.png)
+![img_11.png](images/iimg_11.png)
+![img_12.png](images/iimg_12.png)
 
 ### 安全组须知知识点
 - 可以绑定到多个实例
@@ -94,7 +94,7 @@
 - 所有的出口流量默认放开
 
 ### 安全组之间相互引用
-![img_13.png](img_13.png)
+![img_13.png](images/iimg_13.png)
 
 ### 安全组端口须知
 - 22：SSH，log into Linux实例
@@ -111,13 +111,13 @@ ssh -i key ec2-user@ip
 ```
 
 ### 网页链接
-![img_14.png](img_14.png)
-![img_15.png](img_15.png)
+![img_14.png](images/iimg_14.png)
+![img_15.png](images/iimg_15.png)
 
 **给EC2追加role**
-![img_16.png](img_16.png)
-![img_17.png](img_17.png)
-![img_18.png](img_18.png)
+![img_16.png](images/img_16.png)
+![img_17.png](images/img_17.png)
+![img_18.png](images/img_18.png)
 
 ## 网络
 
@@ -127,7 +127,7 @@ ssh -i key ec2-user@ip
 - ipv6是新的，用来解决ipv4不足的问题
 
 ### 内网 vs 公网 ip
-![img_19.png](img_19.png)
+![img_19.png](images/img_19.png)
 - 公网ip - public ip
   - 公网ip意味着机器可以被网络识别到
   - 在整个网络种必须唯一
@@ -143,7 +143,7 @@ ssh -i key ec2-user@ip
 - 如果需要一个固定的公网ip，那么就需要弹性ip
 - 一个弹性ip只要不删掉他，就会一直存在于公网
 - 可以把弹性ip绑定到一个EC2上
-![img_20.png](img_20.png)
+![img_20.png](images/img_20.png)
 
 - 有了动态ip，可以通过重新绑定动态ip到不同的EC2上来防止因为EC2宕机而影响到自己的程序
 - 只能创建5个动态ip，但是可以要求AWS的人帮忙加
@@ -161,7 +161,7 @@ ssh -i key ec2-user@ip
   - Partition - 在同一个az种，分散实例到不同的分区（依赖不同的硬件）
 
 ### Cluster
-![img_21.png](img_21.png)
+![img_21.png](images/img_21.png)
 - 优点：网络好
 - 缺点：如果硬件down了，所有的实例一起死
 - 使用case：
@@ -169,7 +169,7 @@ ssh -i key ec2-user@ip
   - 需要极低延迟的应用
 
 ### Spread
-![img_22.png](img_22.png)
+![img_22.png](images/img_22.png)
 - 优点：
   - 可以跨可用区
   - 减少同时down的风险
@@ -181,15 +181,15 @@ ssh -i key ec2-user@ip
   - 每个实例的失败都需要和其他实例分割开的重要应用
 
 ### Partition
-![img_23.png](img_23.png)
+![img_23.png](images/img_23.png)
 - 每个AZ可以创建7个分区
 - 可以在同一个region下跨多个可用区
 - 一个分区的down会影响本分区的实例，但是不会影响其他分区
 
 ### hands on
-![img_24.png](img_24.png)
-![img_25.png](img_25.png)
-![img_26.png](img_26.png)
+![img_24.png](images/img_24.png)
+![img_25.png](images/img_25.png)
+![img_26.png](images/img_26.png)
 
 ## 弹性网络接口 - Elastic Network Interfaces（ENI）
 - VPC中的逻辑组件，代表了一个虚拟网卡
@@ -201,9 +201,9 @@ ssh -i key ec2-user@ip
   - 一个MAC地址
 - 可以独立创建ENI，并且绑定到EC2的实例上
 - 必须在一个特定的可用区
-![img_27.png](img_27.png)
-![img_28.png](img_28.png)
-![img_29.png](img_29.png)
+![img_27.png](images/img_27.png)
+![img_28.png](images/img_28.png)
+![img_29.png](images/img_29.png)
 
 ## EC2休眠 - Hibernate
 - 在重启EC2实例的时候，下面的事情将会发生
@@ -220,11 +220,11 @@ ssh -i key ec2-user@ip
 - 长时间运行的任务
 - 需要保存内存状态
 
-![img_30.png](img_30.png)
+![img_30.png](images/img_30.png)
 
 在launch新的实例的时候
-![img_31.png](img_31.png)
-![img_32.png](img_32.png)
+![img_31.png](images/img_31.png)
+![img_32.png](images/img_32.png)
 
 # EC2 - Instance Storage 实例存储
 ## EBS Volume - 数据卷
@@ -236,15 +236,15 @@ ssh -i key ec2-user@ip
   - 非root的EBS数据卷，默认EC2被删除的时候保留
 
 ### 图解
-![img_33.png](img_33.png)
-![img_34.png](img_34.png)
-![img_35.png](img_35.png)
+![img_33.png](images/img_33.png)
+![img_34.png](images/img_34.png)
+![img_35.png](images/img_35.png)
 
 ## EBS Snapshots 数据卷快照
 ### 概念
 - 就是EBS的一个备份，制作快照的时候不用detach EBS，但是推荐detach
 - 可以跨可用区甚至是region复制快照
-![img_36.png](img_36.png)
+![img_36.png](images/img_36.png)
 
 ### 特点
 - EBS快照归档
@@ -255,9 +255,9 @@ ssh -i key ec2-user@ip
   - 0延迟恢复快照，很花钱
 
 ### 图解
-![img_37.png](img_37.png)
-![img_38.png](img_38.png)
-![img_39.png](img_39.png)
+![img_37.png](images/img_37.png)
+![img_38.png](images/img_38.png)
+![img_39.png](images/img_39.png)
 
 # AMI - Amazon Machine Image
 ## 概念
@@ -265,9 +265,9 @@ ssh -i key ec2-user@ip
 - 可以通过AMI镜像快速launch一个EC2实例，可以跨可用区launch
 
 ## 图解
-![img_40.png](img_40.png)
-![img_41.png](img_41.png)
-![img_43.png](img_43.png)
+![img_40.png](images/img_40.png)
+![img_41.png](images/img_41.png)
+![img_43.png](images/img_43.png)
 
 # EC2 Instance Store
 ## 概念
@@ -279,7 +279,7 @@ ssh -i key ec2-user@ip
   - 如果硬件失效，有丢数据风险
 
 ## EBS Multi-Attach 提供单个数据卷mount都多个EC2上
-![img_44.png](img_44.png)
+![img_44.png](images/img_44.png)
 
 # EBS Encryption EBS加密
 ## 概念
@@ -297,12 +297,12 @@ ssh -i key ec2-user@ip
 - 从快照创建一个新的EBS Volume，这时数据卷已经被加密
 - Attach加密的数据卷到EC2上
 
-![img_45.png](img_45.png)
-![img_46.png](img_46.png)
-![img_47.png](img_47.png)
-![img_48.png](img_48.png)
-![img_49.png](img_49.png)
-![img_50.png](img_50.png)
+![img_45.png](images/img_45.png)
+![img_46.png](images/img_46.png)
+![img_47.png](images/img_47.png)
+![img_48.png](images/img_48.png)
+![img_49.png](images/img_49.png)
+![img_50.png](images/img_50.png)
 
 # EFS - Elastic File System
 ## 概念
@@ -310,11 +310,11 @@ ssh -i key ec2-user@ip
 - EFS可以跨可用区
 - 高可用，可扩展，有点贵
 - 通过安全组来控制哪个EC2可以访问EFS
-![img_51.png](img_51.png)
+![img_51.png](images/img_51.png)
 
 ## 使用
 创建EFS，mount到EC2上即可
-![img_52.png](img_52.png)
+![img_52.png](images/img_52.png)
 
 ## EBS vs EFS
 ### 对比
