@@ -34,3 +34,4 @@
   - 真正的用户ip被嵌入到了请求头X-Forwarded-For
   - 可以获得端口（X-Forwarded-Port）和协议（X-Forwarded-Proto）
 ![img_3.png](img_3.png)
+
