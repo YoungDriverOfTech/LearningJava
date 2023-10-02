@@ -43,6 +43,16 @@
 - 如果不要用ip来访问ec2，只有alb能访问到ec2，那么就把ec2的的安全组，入口流量改成alb就行
 - 修改ALB的rule，可以根据路径，header之类的东西，控制转发的目标组
 
+## Network Load Balancer
+### 概念
+- NLB允许：
+  - 转发TCP/UDP请求到实例
+  - 处理百万QPS请求
+  - 低延迟
+- 每个可用区每个NLB有一个静态IP，但是也可以分配动态
+- NLB适用于即高性能的TCP/UDP转发
+- ![img_6.png](img_6.png)
+- ![img_7.png](img_7.png)
 
 
 
