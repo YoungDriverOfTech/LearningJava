@@ -64,4 +64,24 @@
 - ![img_9.png](img_9.png)
 
 
+## Sticky Session（Session Affinity）- 亲和度
+### 概念
+- 可以修改LB，让某个请求只被转发到固定的EC2实例上
+- CLB，ALB，NLB适用
+- CLB/ALB，使用cookie来实现
+- 使用case：确保user不会丢失session数据
+
+### 分类
+- Application-based Cookies
+  - Custom cookie
+    - 由转发目标生成，可包含由app生成任何自定义的属性
+    - Cookie名字必须由每个转发目标单独指定（不能重复）
+    - 已被aws占用的名字：AWSLB, AWSALBAPP, AWSALBTG
+  - Application cookie
+    - 被LB生成
+    - 名字是AWSALBAPP
+- Duration-based Cookies
+  - cookie由LB生成
+  - cookie名字是AWSALB（ALB），AWSELB（CLB）
+
 
