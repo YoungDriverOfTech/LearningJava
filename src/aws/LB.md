@@ -55,7 +55,13 @@
 - ![img_7.png](img_7.png)
 
 
-
+## Gateway Load Balancer
+### 概念
+- 用来部署，扩展和管理第三方网络虚拟应用
+- 比如：防火墙入侵检测和预防系统之类
+- 发生在网络的第三层
+- ![img_8.png](img_8.png)
+- ![img_9.png](img_9.png)
 
 
 
