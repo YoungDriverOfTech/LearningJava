@@ -35,4 +35,17 @@
   - 可以获得端口（X-Forwarded-Port）和协议（X-Forwarded-Proto）
 ![img_3.png](img_3.png)
 
+### ALB hands on
+- 创建ALB
+- ![img_4.png](img_4.png)
+- ![img_5.png](img_5.png)
+- 创建完成之后，找到dns name访问即可
+- 如果不要用ip来访问ec2，只有alb能访问到ec2，那么就把ec2的的安全组，入口流量改成alb就行
+- 修改ALB的rule，可以根据路径，header之类的东西，控制转发的目标组
+
+
+
+
+
+
 
