@@ -84,4 +84,39 @@
   - cookie由LB生成
   - cookie名字是AWSALB（ALB），AWSELB（CLB）
 
+## 跨区负载均衡 - Cross-Zone Load Balancing
+### 有无跨区的差别
+- 有：请求会被平均分给ec2
+- ![img_10.png](img_10.png)
+- 无：请求会被平均分给LB
+- ![img_11.png](img_11.png)
+
+### ALB/NLB/CLB默认开启状况
+- ALB
+  - 默认开启
+  - 跨区负载不收钱
+- NLB&GLB
+  - 默认不开启
+  - 跨区负载收钱
+- CLB
+  - 默认不开启
+  - 跨区负载不收钱
+
+## SSL/TLS
+### 概念
+- SSL整数允许数据加密，从客户端发到LB的这段距离，数据是加密的
+  - SSL指加密sockets层
+  - TLS指传输层加密
+  - 现在TLS整数是被主要使用的，但大多数人都把TLS当成SSL
+- 有过期时间，过期的时候需要更新
+
+### LB - SSL Certificates
+![img_12.png](img_12.png)
+
+### Server Name Indication(SNI)
+- 用来解决多个整数绑定到同一个web服务器的问题
+- 是一种新的协议，要求用户在初始的SSL握手的时候，指明目标服务器hostname
+- 服务器就能发现正确的证书
+- 只在ALB&NLB起作用
+![img_13.png](img_13.png)
 
