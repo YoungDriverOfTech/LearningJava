@@ -120,3 +120,69 @@
 - 只在ALB&NLB起作用
 ![img_13.png](img_13.png)
 
+### Elastic Load Balancers - SSL Certificates
+- CLB
+  - 只支持SSL整数
+  - 必须用多个CLB匹配多个SSL证书
+- ALB
+  - 支持多个监听器监听多个SSL证书
+  - SNI使上面的生效
+- NLB
+  - 支持多个监听器监听多个SSL证书
+  - SNI使上面的生效
+
+### 链接排空 - Connection Draining
+- 名字
+  - 链接排空 - Connection Draining： CLB
+  - 注销延迟 - Deregistration Delay: ALB & NLB
+- 当注销一个EC2实例的时候，LB停止想这个实例发送请求，这个实例把已经收到的请求处理完，然后在注销。从声明注销 - 处理请求 - 注销的这段时间，就是注销延迟
+- 1 - 3600秒范围
+- 可以被禁用
+![img_14.png](img_14.png)
+
+## 自动扩展组 - Auto Scaling Group
+### 概念
+- 自动增加/减少EC2的实例
+- ASG免费
+
+### EC2 数量指标
+- 三种设定参数
+![img_15.png](img_15.png)
+- 自动使用LB
+![img_16.png](img_16.png)
+
+### 使用ASG的EC2启动模板
+因为启动EC2的时候，实例必须要一样，所以需要创建一个模板
+![img_17.png](img_17.png)
+
+### 自动扩展 - CloudWatch Alarms & Scaling
+- 基于CloudWatch，实现ASG的自动扩展
+- 一个alarm监视器就是一种指标
+  - 比如平均CPU利用
+- 基于警告
+  - 可以创建扩展/减少的policy
+![img_18.png](img_18.png)
+
+### ASG - Dynamic Scaling Policies 动态扩展政策
+- 目标追踪扩展 - Target tracking Scaling
+  - 最容易setup
+  - 例如：保持平均ASG的CPU利用率在40%
+- 简单/步骤扩展 - Simple/Step Scaling
+  - 当CloudWatch警告被触发（CPU > 70%），加2个实例
+  - 当CloudWatch警告被触发（CPU < 70%），减1个实例
+- 预定扩展 - Schedule Actions
+  - 基于已知使用量预定一个扩展
+  - 比如：在双11追加10个实例
+
+### 扩展时常用的一些指标
+- CPUUtilization： CPU平均使用率
+- RequestCountPerTarget： 每个EC2处理的请求数量保持稳定
+- Average Network In/Out：平均网络吞吐
+- 可以自定义指标
+
+### ASG - Scaling Cooldowns 扩展冷却
+- 在ASG完成扩展/减少后，会进入一个冷却期，这时候不会在进行伸缩活动。冷却器默认300秒
+
+### hands on
+![img_19.png](img_19.png)
+![img_20.png](img_20.png)
