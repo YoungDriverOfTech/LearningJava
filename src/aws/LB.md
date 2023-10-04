@@ -19,26 +19,26 @@
   - Operates at layer 3（Network layer） IP Protocol
 
 ## Load Balancer Security Groups
-![img.png](img.png)
+![img.png](images_lb/img.png)
 
 ## Application Load Balancer
 - 根据url转发
-![img_1.png](img_1.png)
+![img_1.png](images_lb/img_1.png)
 
 - 根据参数转发
-![img_2.png](img_2.png)
+![img_2.png](images_lb/img_2.png)
 
 ### ALB注意点
 - 固定的hostname（xxx.region.elb.amazonaws.com）
 - app服务器不直接看用户的ip地址
   - 真正的用户ip被嵌入到了请求头X-Forwarded-For
   - 可以获得端口（X-Forwarded-Port）和协议（X-Forwarded-Proto）
-![img_3.png](img_3.png)
+![img_3.png](images_lb/img_3.png)
 
 ### ALB hands on
 - 创建ALB
-- ![img_4.png](img_4.png)
-- ![img_5.png](img_5.png)
+- ![img_4.png](images_lb/img_4.png)
+- ![img_5.png](images_lb/img_5.png)
 - 创建完成之后，找到dns name访问即可
 - 如果不要用ip来访问ec2，只有alb能访问到ec2，那么就把ec2的的安全组，入口流量改成alb就行
 - 修改ALB的rule，可以根据路径，header之类的东西，控制转发的目标组
@@ -51,8 +51,8 @@
   - 低延迟
 - 每个可用区每个NLB有一个静态IP，但是也可以分配动态
 - NLB适用于即高性能的TCP/UDP转发
-- ![img_6.png](img_6.png)
-- ![img_7.png](img_7.png)
+- ![img_6.png](images_lb/img_6.png)
+- ![img_7.png](images_lb/img_7.png)
 
 
 ## Gateway Load Balancer
@@ -60,8 +60,8 @@
 - 用来部署，扩展和管理第三方网络虚拟应用
 - 比如：防火墙入侵检测和预防系统之类
 - 发生在网络的第三层
-- ![img_8.png](img_8.png)
-- ![img_9.png](img_9.png)
+- ![img_8.png](images_lb/img_8.png)
+- ![img_9.png](images_lb/img_9.png)
 
 
 ## Sticky Session（Session Affinity）- 亲和度
@@ -87,9 +87,9 @@
 ## 跨区负载均衡 - Cross-Zone Load Balancing
 ### 有无跨区的差别
 - 有：请求会被平均分给ec2
-- ![img_10.png](img_10.png)
+- ![img_10.png](images_lb/img_10.png)
 - 无：请求会被平均分给LB
-- ![img_11.png](img_11.png)
+- ![img_11.png](images_lb/img_11.png)
 
 ### ALB/NLB/CLB默认开启状况
 - ALB
@@ -111,14 +111,14 @@
 - 有过期时间，过期的时候需要更新
 
 ### LB - SSL Certificates
-![img_12.png](img_12.png)
+![img_12.png](images_lb/img_12.png)
 
 ### Server Name Indication(SNI)
 - 用来解决多个整数绑定到同一个web服务器的问题
 - 是一种新的协议，要求用户在初始的SSL握手的时候，指明目标服务器hostname
 - 服务器就能发现正确的证书
 - 只在ALB&NLB起作用
-![img_13.png](img_13.png)
+![img_13.png](images_lb/img_13.png)
 
 ### Elastic Load Balancers - SSL Certificates
 - CLB
@@ -138,7 +138,7 @@
 - 当注销一个EC2实例的时候，LB停止想这个实例发送请求，这个实例把已经收到的请求处理完，然后在注销。从声明注销 - 处理请求 - 注销的这段时间，就是注销延迟
 - 1 - 3600秒范围
 - 可以被禁用
-![img_14.png](img_14.png)
+![img_14.png](images_lb/img_14.png)
 
 ## 自动扩展组 - Auto Scaling Group
 ### 概念
@@ -147,13 +147,13 @@
 
 ### EC2 数量指标
 - 三种设定参数
-![img_15.png](img_15.png)
+![img_15.png](images_lb/img_15.png)
 - 自动使用LB
-![img_16.png](img_16.png)
+![img_16.png](images_lb/img_16.png)
 
 ### 使用ASG的EC2启动模板
 因为启动EC2的时候，实例必须要一样，所以需要创建一个模板
-![img_17.png](img_17.png)
+![img_17.png](images_lb/img_17.png)
 
 ### 自动扩展 - CloudWatch Alarms & Scaling
 - 基于CloudWatch，实现ASG的自动扩展
@@ -161,7 +161,7 @@
   - 比如平均CPU利用
 - 基于警告
   - 可以创建扩展/减少的policy
-![img_18.png](img_18.png)
+![img_18.png](images_lb/img_18.png)
 
 ### ASG - Dynamic Scaling Policies 动态扩展政策
 - 目标追踪扩展 - Target tracking Scaling
@@ -184,5 +184,5 @@
 - 在ASG完成扩展/减少后，会进入一个冷却期，这时候不会在进行伸缩活动。冷却器默认300秒
 
 ### hands on
-![img_19.png](img_19.png)
-![img_20.png](img_20.png)
+![img_19.png](images_lb/img_19.png)
+![img_20.png](images_lb/img_20.png)

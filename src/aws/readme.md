@@ -7,3 +7,6 @@
 
 ## High Availability & Scalability
 [LB](./LB.md)
+
+## Database
+[RDS](./RDS.md)
