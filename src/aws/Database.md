@@ -51,6 +51,10 @@
   - 同步机制在两个DB中建立
 - ![img_5.png](img_5.png)
 
+### hands on
+配置都很简单，照着选就行了
+![img_6.png](img_6.png)
+
 
 
 
