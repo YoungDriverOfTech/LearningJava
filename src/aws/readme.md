@@ -9,4 +9,4 @@
 [LB](./LB.md)
 
 ## Database
-[RDS](./RDS.md)
+[Database](./Database.md)
