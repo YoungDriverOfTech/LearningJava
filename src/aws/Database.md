@@ -56,6 +56,40 @@
 ![img_6.png](img_6.png)
 
 
+### 自定义类型RDS - RDS Custom
+- 只有Oracle和Microsoft SQL Server适用
+- RDS和Custom RDS对比
+  - RDS
+    - 自动setup，操作，扩展
+  - Custom RDS
+    - 可以访问潜在的数据库和操作系统
+    - 自己修改配置，安装补丁，开启原生功能
+    - 可以用SSH链接到宿主EC2
+
+# Amazon Aurora
+## Aurora总览
+### 概念
+- AWS不开源的数据库
+- 支持MYSQL和Postgres
+- Aurora的存储可以自动增长，从10GIB到128TB
+- Failover瞬间完成，高可用
+- 比RDS贵20%，但是更有效率
+
+### 高可用 - High Availability
+- 会在3个AZ中备份6份用户的数据
+  - 4个备份用来write
+  - 3个备份用来读
+  - 可以自己恢复
+  - 存储分布在上百个数据卷中
+- 1个Aurora实例负责写（master）
+- 30秒内可完成failover
+- Master + 15 Read Replicas
+- 支持跨region
+- ![img_7.png](img_7.png)
+
+### Aurora DB Cluster
+![img_8.png](img_8.png)
+
 
 
 
