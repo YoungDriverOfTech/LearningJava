@@ -90,7 +90,7 @@
 ### Aurora DB Cluster
 ![img_8.png](img_8.png)
 
-
+### Aurora Replicas - Auto Scaling
 
 
 
