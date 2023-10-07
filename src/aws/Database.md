@@ -91,9 +91,20 @@
 ![img_8.png](img_8.png)
 
 # Amazon ElastiCache Overview
+## 总览
+### 概念
+- ElastiCache是用来管理Redis或者Memcached
+- AWS负责OS的维护，布丁，setup配置，监视等等等等
 
+### 解决架构方案
+**数据缓存**
+![img_9.png](img_9.png)
 
+**用户登录**
+![img_10.png](img_10.png)
 
+### Redis和MemCached对比
+![img_11.png](img_11.png)
 
 
 
