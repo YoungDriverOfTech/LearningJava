@@ -109,6 +109,18 @@
 ### HandsON
 ![img_12.png](img_12.png)
 
+## 缓存安全
+### 认证
+- ElastiCache支持IAM认证
+- IAM policy在ElastiCache上只能用于API级别的安全认证
+- Redis AUTH
+  - 可以设置password/token，当创建一个redis集群
+  - 除了安全组以外，这是一个额外的安全级别
+  - 支持SSL加密传输
+- Memcached
+  - 支持SASL-based认证
+
+![img_13.png](img_13.png)
 
 
 
