@@ -23,25 +23,25 @@
   - 空闲空间小于分配空间的10%
   - 在过去5分钟就是空间紧张状态
   - 从上次修改后6个小时
-- ![img.png](img.png)
+- ![img.png](image_db/img.png)
 
 ### 仅可读副本 - RDS Read Replicas
 - 最多15个读副本数据库
 - 可以统一AZ，不同AZ，不同Region
 - 副本数据会从Master数据库异步复制，最终的结果是满足一致性的
 - 副本可以被提升为master
-![img_1.png](img_1.png)
+![img_1.png](image_db/img_1.png)
 
 ### RDS Read Replicas 使用场景
-![img_2.png](img_2.png)
+![img_2.png](image_db/img_2.png)
 
 ### RDS Read Replicas 网络花费
-![img_3.png](img_3.png)
+![img_3.png](image_db/img_3.png)
 
 ### 灾难恢复 - EDS Multi AZ(Disaster Recovery)
 - 同步副本数据库
 - 有一个dns名字，出现故障自动转移到被用数据库（auto fail-over）
-- ![img_4.png](img_4.png)
+- ![img_4.png](image_db/img_4.png)
 
 ### 从单一AZ到复数AZ
 - 0 down时间
@@ -49,11 +49,11 @@
   - 取快照
   - 新AZ的新DB存储快照数据
   - 同步机制在两个DB中建立
-- ![img_5.png](img_5.png)
+- ![img_5.png](image_db/img_5.png)
 
 ### hands on
 配置都很简单，照着选就行了
-![img_6.png](img_6.png)
+![img_6.png](image_db/img_6.png)
 
 
 ### 自定义类型RDS - RDS Custom
@@ -85,10 +85,10 @@
 - 30秒内可完成failover
 - Master + 15 Read Replicas
 - 支持跨region
-- ![img_7.png](img_7.png)
+- ![img_7.png](image_db/img_7.png)
 
 ### Aurora DB Cluster
-![img_8.png](img_8.png)
+![img_8.png](image_db/img_8.png)
 
 # Amazon ElastiCache Overview
 ## 总览
@@ -98,16 +98,16 @@
 
 ### 解决架构方案
 **数据缓存**
-![img_9.png](img_9.png)
+![img_9.png](image_db/img_9.png)
 
 **用户登录**
-![img_10.png](img_10.png)
+![img_10.png](image_db/img_10.png)
 
 ### Redis和MemCached对比
-![img_11.png](img_11.png)
+![img_11.png](image_db/img_11.png)
 
 ### HandsON
-![img_12.png](img_12.png)
+![img_12.png](image_db/img_12.png)
 
 ## 缓存安全
 ### 认证
@@ -120,7 +120,7 @@
 - Memcached
   - 支持SASL-based认证
 
-![img_13.png](img_13.png)
+![img_13.png](image_db/img_13.png)
 
 
 
