@@ -44,7 +44,7 @@
 - CNAME: 路由hostname到另一个hostname
   - 目标是一个必须有A or AAAA记录的域名
   - 不能在DNS命名空间的top节点创建一个CNAME记录
-    - 比如不能创建example.com。但是可以创建www.example.com
+    - 比如不能创建example.com。但是可以创建xxxx.example.com
 - NS: 针对Hosted Zone的名字服务器
   - 控制怎么路由流量到一个域名
 
@@ -65,10 +65,35 @@
 点击hosted name，创建record。
 创建完成后，访问record name，会query hosted server，server把record的value返回给浏览器，浏览器就能得到ipv4的地址了
 使用nslookup可以发现ipv4和record的名字是对应的
+
 ![img_4.png](img_4.png)
 
+## Route 53 – Record TTL(Time To Live)
+- 高TTL：比如24小时
+  - Route 53的流量压力小
+  - record有可能是旧的
+- 低TTL：比如60秒
+  - Route 53的流量压力大
+  - record更新快，较少时间出现outdated
+  - 容易改变record的设定
+- 除了Alias records，TTL是一个强制的设定
 
+## CNAME vs Alias
+- 如果想要把AWS的资源（LB之类的）暴露成一个AWS的hostname。可以使用下面两种
+  - 比如lb的域名，暴露成route 53上注册的一个域名
+- CNAME
+  - 从一个hostname指向另一个hostname（app.mydomain.com -> lb.xxx.com)
+  - 只适用于非Root 域名（根域名：example.com, 非根域名：xxx.example.com）
+- Alias
+  - 从一个hostname指向另一个hostname（app.mydomain.com -> lb.xxx.com)
+  - 根/非根域名都可使用
+  - 免费
+  - 有原生的健康检查
 
+## Route 53 – Alias Record
+- 别名的类型总是A/AAAA
+- 不能设置TTL
 
+![img_5.png](img_5.png)
 
 
