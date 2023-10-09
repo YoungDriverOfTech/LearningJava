@@ -55,3 +55,20 @@
   - Private Hosted Zones：这里包含的records定义了怎么从一个或者多个VPC中路由流量
 - 不免费
 ![img_2.png](img_2.png)
+
+## 实践
+### 创建一个域名
+下面的操作会自己生成一个hosted name（在这里面可以创建record）
+![img_3.png](img_3.png)
+
+### 创建record
+点击hosted name，创建record。
+创建完成后，访问record name，会query hosted server，server把record的value返回给浏览器，浏览器就能得到ipv4的地址了
+使用nslookup可以发现ipv4和record的名字是对应的
+![img_4.png](img_4.png)
+
+
+
+
+
+
