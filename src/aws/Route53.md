@@ -131,3 +131,32 @@
 - 重定向资源到延迟更低的region
 ![img_8.png](img_8.png)
 
+## Route 53 – Health Checks
+### 总览
+- 健康检查只适用于public资源
+- Health Check => Automated DNS failover:
+![img_9.png](img_9.png)
+
+### Health Checks - 监听一个endpoint
+- 差不多15个全球的健康检查器会检查endpoint的健康情况
+  - 默认的健康/不健康的临界值是3
+  - 间隔，30秒钟（可以设置成10秒，但是花费更高）
+  - 支持协议：HTTP，HTTPS，TCP
+  - 如果大于18%的健康检查器回报endpoint是健康的，那么route 53认为资源是健康的，否则就是不健康
+- 只有endpoint返回状态码2xx,3xx，健康检查才会通过
+- 配置路由器和防火墙，允许来自route 53的健康检查请求
+![img_10.png](img_10.png)
+
+### Route 53 – Calculated Health Checks
+- 组合多个健康检查的结果到一个单个的健康检查
+- 可以使用OR，AND，NOT来组合结果
+- 可以监视高达256个子健康检查
+- 定义有多少个子检查通过才算父检查通过
+![img_11.png](img_11.png)
+
+### Health Checks – Private Hosted Zones
+- Route 53健康检查器是在VPC的外部
+- 不能访问私有的endpoints
+- 可以创建一个CloudWatch Metric并且监视CloudWatch Alarm
+![img_12.png](img_12.png)
+
