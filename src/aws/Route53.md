@@ -131,6 +131,34 @@
 - 重定向资源到延迟更低的region
 ![img_8.png](img_8.png)
 
+### Routing Policies - Failover (Active-Passive)
+![img_14.png](img_14.png)
+
+### Routing Policies - Geolocation
+- 和基于延迟是不一样的
+- 这个路由是基于用于的位置
+- 指定位置是更具大陆，国家。如果有地区有重复，那就路由到最准确位置的endpoint
+- 应该创建一个默认的record，如果没有任何匹配的位置
+- 可以使用健康检查
+![img_15.png](img_15.png)
+
+### Routing Policies - Geoproximity（地理临近性）
+- 根据用户地理位置和资源，路由流量到AWS的资源上
+- // todo
+
+### Routing Policies - IP-based Routing
+- 根据用户的ip进行路由
+- 你提供一个cidrs的list和endpoints/locations给你的用户（用户ip ： endpoint的对应关系）
+- 用例：优化performance，减少网络消费
+![img_16.png](img_16.png)
+
+### Routing Policies - Multi-Value
+- 当路由流量到多个资源的时候使用
+- Route 53返回多个values
+- 可以使用健康检查
+- 对每个Multi-Value查询，可以返回多达8个健康的record
+![img_17.png](img_17.png)
+
 ## Route 53 – Health Checks
 ### 总览
 - 健康检查只适用于public资源
@@ -160,3 +188,4 @@
 - 可以创建一个CloudWatch Metric并且监视CloudWatch Alarm
 ![img_12.png](img_12.png)
 
+![img_13.png](img_13.png)
