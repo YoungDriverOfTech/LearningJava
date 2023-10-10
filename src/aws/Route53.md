@@ -96,4 +96,38 @@
 
 ![img_5.png](img_5.png)
 
+## Route 53 – Routing Policies
+### 基础
+- 定义了Route 53怎样回应DNS查询请求
+- 不要和普通的路由混淆
+  - 这个和LB的负载均衡不一样
+  - DNS不会转发任何流量，他只会回应DNS请求
+- Route 53支持多种路由规则
+  - Simple
+  - Weighted
+  - Failover
+  - Latency based
+  - Geolocation
+  - Multi-Value Answer
+  - Geoproximity（using Route 53 Traffic Flow feature）
+
+### Routing Policies - Simple
+- 路由DNS请求到单一的资源ip上
+- 可以在同一个record上定义多个值
+- 如果多个ip地址被返回了，那么client会随机挑选一个去访问
+- 如果启动了别名，只能定死一个AWS资源
+- 不能使用健康检查
+![img_6.png](img_6.png)
+
+### Routing Policies - Weighted
+- 控制DNS请求的百分比到某个资源上
+- DNS records必须有相同的名字和type
+- 可以使用健康检查
+- 赋予0给一个record，可以停止发送请求到某个资源上
+- 如果所有的record的比重都是0，那么就相当于每个record的比重一样
+![img_7.png](img_7.png)
+
+### Routing Policies - Latency-based（基于延迟）
+- 重定向资源到延迟更低的region
+![img_8.png](img_8.png)
 
