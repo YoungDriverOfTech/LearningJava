@@ -144,7 +144,12 @@
 
 ### Routing Policies - Geoproximity（地理临近性）
 - 根据用户地理位置和资源，路由流量到AWS的资源上
-- // todo
+- 能够根据设定的bias（偏向值）来进行路由
+- 改变地区的bias值
+  - 增加（1-99）：更多的流量到资源
+  - 减少（-1 - -99）：更小的流量到资源
+![img_18.png](img_18.png)
+![img_19.png](img_19.png)
 
 ### Routing Policies - IP-based Routing
 - 根据用户的ip进行路由
@@ -189,3 +194,11 @@
 ![img_12.png](img_12.png)
 
 ![img_13.png](img_13.png)
+
+### Domain Registar vs DNS Service
+- 可以买或者注册一个自己的域名
+- 一般来说，域名注册商（Domain Registar）会提供一个DNS服务用来管理DNS
+- 但是也可以自己来管理DNS
+- 比如：在GoDaddy上买了一个域名，用Route 53来管理DNS的records
+![img_20.png](img_20.png)
+![img_21.png](img_21.png)
