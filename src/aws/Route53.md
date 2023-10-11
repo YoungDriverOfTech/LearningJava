@@ -13,10 +13,10 @@
 - Name Server：处理DNS请求
 - Top Level Domain（TLD）：com，us，in，gov，org
 - Second Level Domain（SLD）：amazon.com, google.com
-- ![img.png](img.png)
+- ![img.png](route53/img.png)
 
 ### DNS怎么工作的
-![img_1.png](img_1.png)
+![img_1.png](route53/img_1.png)
 
 # Amazon Route 53
 ## 简介
@@ -54,19 +54,19 @@
   - Public Hosted Zones：这里包含的records定义了怎么从互联网路由流量
   - Private Hosted Zones：这里包含的records定义了怎么从一个或者多个VPC中路由流量
 - 不免费
-![img_2.png](img_2.png)
+![img_2.png](route53/img_2.png)
 
 ## 实践
 ### 创建一个域名
 下面的操作会自己生成一个hosted name（在这里面可以创建record）
-![img_3.png](img_3.png)
+![img_3.png](route53/img_3.png)
 
 ### 创建record
 点击hosted name，创建record。
 创建完成后，访问record name，会query hosted server，server把record的value返回给浏览器，浏览器就能得到ipv4的地址了
 使用nslookup可以发现ipv4和record的名字是对应的
 
-![img_4.png](img_4.png)
+![img_4.png](route53/img_4.png)
 
 ## Route 53 – Record TTL(Time To Live)
 - 高TTL：比如24小时
@@ -94,7 +94,7 @@
 - 别名的类型总是A/AAAA
 - 不能设置TTL
 
-![img_5.png](img_5.png)
+![img_5.png](route53/img_5.png)
 
 ## Route 53 – Routing Policies
 ### 基础
@@ -117,7 +117,7 @@
 - 如果多个ip地址被返回了，那么client会随机挑选一个去访问
 - 如果启动了别名，只能定死一个AWS资源
 - 不能使用健康检查
-![img_6.png](img_6.png)
+![img_6.png](route53/img_6.png)
 
 ### Routing Policies - Weighted
 - 控制DNS请求的百分比到某个资源上
@@ -125,14 +125,14 @@
 - 可以使用健康检查
 - 赋予0给一个record，可以停止发送请求到某个资源上
 - 如果所有的record的比重都是0，那么就相当于每个record的比重一样
-![img_7.png](img_7.png)
+![img_7.png](route53/img_7.png)
 
 ### Routing Policies - Latency-based（基于延迟）
 - 重定向资源到延迟更低的region
-![img_8.png](img_8.png)
+![img_8.png](route53/img_8.png)
 
 ### Routing Policies - Failover (Active-Passive)
-![img_14.png](img_14.png)
+![img_14.png](route53/img_14.png)
 
 ### Routing Policies - Geolocation
 - 和基于延迟是不一样的
@@ -140,7 +140,7 @@
 - 指定位置是更具大陆，国家。如果有地区有重复，那就路由到最准确位置的endpoint
 - 应该创建一个默认的record，如果没有任何匹配的位置
 - 可以使用健康检查
-![img_15.png](img_15.png)
+![img_15.png](route53/img_15.png)
 
 ### Routing Policies - Geoproximity（地理临近性）
 - 根据用户地理位置和资源，路由流量到AWS的资源上
@@ -148,27 +148,27 @@
 - 改变地区的bias值
   - 增加（1-99）：更多的流量到资源
   - 减少（-1 - -99）：更小的流量到资源
-![img_18.png](img_18.png)
-![img_19.png](img_19.png)
+![img_18.png](route53/img_18.png)
+![img_19.png](route53/img_19.png)
 
 ### Routing Policies - IP-based Routing
 - 根据用户的ip进行路由
 - 你提供一个cidrs的list和endpoints/locations给你的用户（用户ip ： endpoint的对应关系）
 - 用例：优化performance，减少网络消费
-![img_16.png](img_16.png)
+![img_16.png](route53/img_16.png)
 
 ### Routing Policies - Multi-Value
 - 当路由流量到多个资源的时候使用
 - Route 53返回多个values
 - 可以使用健康检查
 - 对每个Multi-Value查询，可以返回多达8个健康的record
-![img_17.png](img_17.png)
+![img_17.png](route53/img_17.png)
 
 ## Route 53 – Health Checks
 ### 总览
 - 健康检查只适用于public资源
 - Health Check => Automated DNS failover:
-![img_9.png](img_9.png)
+![img_9.png](route53/img_9.png)
 
 ### Health Checks - 监听一个endpoint
 - 差不多15个全球的健康检查器会检查endpoint的健康情况
@@ -178,27 +178,27 @@
   - 如果大于18%的健康检查器回报endpoint是健康的，那么route 53认为资源是健康的，否则就是不健康
 - 只有endpoint返回状态码2xx,3xx，健康检查才会通过
 - 配置路由器和防火墙，允许来自route 53的健康检查请求
-![img_10.png](img_10.png)
+![img_10.png](route53/img_10.png)
 
 ### Route 53 – Calculated Health Checks
 - 组合多个健康检查的结果到一个单个的健康检查
 - 可以使用OR，AND，NOT来组合结果
 - 可以监视高达256个子健康检查
 - 定义有多少个子检查通过才算父检查通过
-![img_11.png](img_11.png)
+![img_11.png](route53/img_11.png)
 
 ### Health Checks – Private Hosted Zones
 - Route 53健康检查器是在VPC的外部
 - 不能访问私有的endpoints
 - 可以创建一个CloudWatch Metric并且监视CloudWatch Alarm
-![img_12.png](img_12.png)
+![img_12.png](route53/img_12.png)
 
-![img_13.png](img_13.png)
+![img_13.png](route53/img_13.png)
 
 ### Domain Registar vs DNS Service
 - 可以买或者注册一个自己的域名
 - 一般来说，域名注册商（Domain Registar）会提供一个DNS服务用来管理DNS
 - 但是也可以自己来管理DNS
 - 比如：在GoDaddy上买了一个域名，用Route 53来管理DNS的records
-![img_20.png](img_20.png)
-![img_21.png](img_21.png)
+![img_20.png](route53/img_20.png)
+![img_21.png](route53/img_21.png)
