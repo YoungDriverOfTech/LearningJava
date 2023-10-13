@@ -13,3 +13,6 @@
 
 ## Route53
 [Route53](./Route53.md)
+
+## Practice
+[Practice](./ArchitecturePractice.md)
