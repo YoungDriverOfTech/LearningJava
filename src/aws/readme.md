@@ -17,4 +17,5 @@
 ## Beanstalk
 [Beanstalk](./Beanstalk.md)
 
-## S3
+## Amazon S3
+[S3](./S3.md)
