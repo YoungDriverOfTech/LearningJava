@@ -24,4 +24,6 @@
 [Cloud Front](./CloudFront.md)
 
 
-## AWS Storage Extras
+## AWS Storage Extras（存储附加功能）
+[Storage Extras](./StorageExtras.md)
+
