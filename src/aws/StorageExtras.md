@@ -3,9 +3,9 @@
 ### 总览
 - 高度安全的便携式设备，用于在Edge收集和处理数据，以及将数据迁入和迁出AWS
 - 数据迁移
-  - ![img.png](img.png)
+  - ![img.png](storageextras/img.png)
 - Edge computing
-  - ![img_1.png](img_1.png)
+  - ![img_1.png](storageextras/img_1.png)
 
 ### 使用AWS Snow Family进行数据迁移
 - 使用普通的数据迁移
@@ -15,12 +15,12 @@
   - 共享带宽，不能最大化利用带宽
   - 链接稳定性不好
   - 花费时间太多
-  - ![img_2.png](img_2.png)
+  - ![img_2.png](storageextras/img_2.png)
 - 使用Snow Family
   - 离线设备来完成数据迁移
   - 如果使用网络来进行数据迁移需要花费1周多，那么就应该使用snow family
 - 图解
-  - ![img_3.png](img_3.png)
+  - ![img_3.png](storageextras/img_3.png)
 
 ## 设备
 ### Snowball Edge（用来转移数据）
@@ -33,7 +33,7 @@
 - Snowball 边缘计算优化
   - 42TB HDD或者28TB NVMe的块级数据卷容量和s3对象兼容存储
 - 使用case：云端大数据迁移，数据中心退役，灾难恢复
-- ![img_4.png](img_4.png)
+- ![img_4.png](storageextras/img_4.png)
 
 ### AWS Snowcone & Snowcone SSD
 - 小型，便携，坚固耐用&安全，适应艰难的环境
@@ -44,17 +44,17 @@
 - 在Snowball不能用的地方使用Snowcone（比如有限制的空间环境）
 - 必须提供自己的电视，电缆
 - 可以发回AWS办公室，也可以使用网络，使用AWS Data Sync来发送数据
-- ![img_5.png](img_5.png)
+- ![img_5.png](storageextras/img_5.png)
 
 ### AWS Snowmobile
 - 传输艾字节数据（1 EB = 1,000 PB = 1,000,000 TBs）
 - 每个Snowmobile有100PB的容量
 - 安全性高：可控温度，GPS，24/7影像监视
 - 如果传输10PB以上的数据，这个要好于Snowball
-- ![img_6.png](img_6.png)
+- ![img_6.png](storageextras/img_6.png)
 
 ### 3钟设备对比
-![img_7.png](img_7.png)
+![img_7.png](storageextras/img_7.png)
 
 ### 使用步骤
 - 1，从aws console请求一个设备
@@ -103,13 +103,13 @@
 ### 解决架构：Snowball into Glacier
 - Snowball不能直接导入到Glacier
 - 必须先使用S3，然后结合S3的lifecycle policy
-- ![img_8.png](img_8.png)
+- ![img_8.png](storageextras/img_8.png)
 
 ## Amazon FSx
 ### 总览
 - 在 AWS 上启动第三方高性能文件系统
 - aws完全控制的服务
-- ![img_9.png](img_9.png)
+- ![img_9.png](storageextras/img_9.png)
 
 ### Windows的文件服务器 - Fsx
 - FSx for Windows 是完全托管的 Windows 文件系统共享驱动器
@@ -150,7 +150,7 @@
   - 数据在同一个AZ中被备份
   - 在几分钟内替换失败的文件
   - 使用：长期数据处理，敏感数据
-- ![img_10.png](img_10.png)
+- ![img_10.png](storageextras/img_10.png)
 
 ### FSx for NetApp ONTAP
 - 在aws上管理NetApp ONTAP
@@ -161,7 +161,7 @@
 - 存储自动伸缩
 - 快照，副本，低花费，压缩和数据冗余
 - 时间点瞬时克隆（有助于测试新的工作负载）
-- ![img_11.png](img_11.png)
+- ![img_11.png](storageextras/img_11.png)
 
 ### Hybrid Cloud for Storage-混合云存储
 - Aws正在推广混合云
@@ -175,7 +175,7 @@
   - 使用AWS storage Gateway
 
 ### AWS存储云原生选项
-![img_12.png](img_12.png)
+![img_12.png](storageextras/img_12.png)
 
 ## AWS Storage Gateway
 - 云数据和本地数据的桥梁
@@ -189,7 +189,7 @@
   - FSx File Gateway
   - Volume Gateway
   - Tape Gateway
-![img_13.png](img_13.png)
+![img_13.png](storageextras/img_13.png)
 
 ### Amazon S3 File Gateway
 - 可以配置s3的桶可以用NFS和SMB协议进行访问
@@ -198,18 +198,90 @@
 - 使用Life policy转移到Glacier
 - 使用每个File GatewayIAM role访问桶
 - SMB协议已经整合了AD（Active Directory）做用户验证
-![img_14.png](img_14.png)
+![img_14.png](storageextras/img_14.png)
 
 ### Amazon FSx File Gateway
 - 原生可以访问Amazon的Windows文件系统
 - 本地缓存经常被访问的数据
 - windows原生兼容（SMB，NTFS，Active Directory）
 - 对于小组共享文件和家庭目录很有用
-![img_15.png](img_15.png)
+![img_15.png](storageextras/img_15.png)
 
 ### Volume Gateway
 - 使用 S3 支持的 iSCSI 协议的块存储
 - 由 EBS 快照支持，可帮助恢复本地卷
 - Cached volumes: 低延迟取访问最近的数据
 - Stored volumes: 整个数据集是在本地，使用定时任务备份到s3
-![img_16.png](img_16.png)
+![img_16.png](storageextras/img_16.png)
+
+### Tape Gateway
+- 一些公司使用物理磁带进行备份流程
+- 使用Tape Gateway，公司可以有同样的流程的，但是是在云上
+- VirtualTape Library（VTL）由Amazon S3和Glacier支持
+- 使用已有的基于tape处理流程来备份数据（和ISCSI接口）
+- 和业界领先的备份厂商共同协作
+![img_17.png](storageextras/img_17.png)
+
+### Storage Gateway - Hardware appliance（硬件电器）
+- 使用storage gateway意味着你需要本地虚拟化
+- 否则可以使用一个Storage Gateway Hardware appliance
+- 可以在亚马孙上购买
+- 可以和File Gateway/Volume Gateway/Tape Gateway一起使用
+- 要求CPU，内存，网络，SSD缓存资源
+- 对于每日NFS的备份在小型数据中心有用
+![img_18.png](storageextras/img_18.png)
+
+### AWS Storage Gateway
+![img_19.png](storageextras/img_19.png)
+
+## AWS Transfer Family
+### 总览
+- 一项完全托管的服务，用于将文件传入和传出 Amazon S3 或使用 FTP 协议的 Amazon EFS
+- 支持的协议
+  - FTP
+  - FTPS
+  - SFTP
+- 托管基础设施、可扩展、可靠、高可用性（多可用区）
+- 按照配置的endpoint每小时的使用+数据传输量（GB）来付费
+- 存储和管理用户的信息在服务内
+- 和现在已有的认证系统可以协作使用（Microsoft Active Directory，LDAP，Okta）
+- 使用case：分享文件，公共数据集，CRM，ERP
+
+### 图解
+![img_20.png](storageextras/img_20.png)
+
+### AWS DataSync
+- 移动大量数据从和到
+  - 本地/其他云到AWS（NFS，SMB，HDFS，S3，S3 api）- 需要agent
+  - AWS到AWS（不同的存储服务）- 不需要agent
+- 可以同步到
+  - S3（任何storage class - 包括Glacier）
+  - EFS
+  - FSx（Windows，Lustre，NetApp，OpenZFS）
+- 副本任务可以被scheduled的按照小时，天，周来运行
+- 文件权限和metadata是被保留的（NFS，POSIX，SMB）
+- 一个agent任务可以使用10Gbps，可以设置带宽限制
+
+### AWS DataSync - NFS/SMB to AWS（S3，EFS，FSx）
+![img_21.png](storageextras/img_21.png)
+
+
+### AWS DataSync - Transfer between AWS storage services
+![img_22.png](storageextras/img_22.png)
+
+## Storage Comparison - 对比
+- S3:object 存储
+- S3 Glacier：Object 归档
+- EBS volumes：一次用于一个 EC2 实例的网络存储
+- instance Storage：EC2实例的物理存储
+- EFS：对于Linux实例的网络文件系统
+- FSx for windows：对于Windows服务器的网络文件系统
+- FSx for Lustre：高性能计算型的Linux文件系统
+- FSx for NetApp ONTAP：操作系统兼容性高
+- FSx for OpenZFS：托管的ZFS文件系统
+- Storage Gateway：S3&FSx File Gateway，Vlume Gateway（cache&stored），Tape Gateway
+- Transfer Family：S3或者EFS顶端的FTP，FTPS，SFTP接口
+- DataSync：定时进行本地到AWS或者AWS到AWS的数据同步
+- Snowcone/Snowball/Snowmobile：移动大量数据到云端
+- Database：对于特定的工作负载，通常使用索引和查询
+
