@@ -163,3 +163,53 @@
 - 时间点瞬时克隆（有助于测试新的工作负载）
 - ![img_11.png](img_11.png)
 
+### Hybrid Cloud for Storage-混合云存储
+- Aws正在推广混合云
+  - infra的一部分在云上，一部分在本地服务器
+- 这是由于
+  - 长时间的云迁移
+  - 安全要求
+  - 合规要求
+  - IT策略
+- S3 是一种专有存储技术（与EFS/NFS 不同），那么如何在本地公开S3 数据？
+  - 使用AWS storage Gateway
+
+### AWS存储云原生选项
+![img_12.png](img_12.png)
+
+## AWS Storage Gateway
+- 云数据和本地数据的桥梁
+- 使用case
+  - 灾难恢复
+  - 被封&恢复
+  - 分层存书（tiered storage）
+  - 本地缓存&低延迟文件访问
+- Storage Gateway的类型
+  - S3 File Gateway
+  - FSx File Gateway
+  - Volume Gateway
+  - Tape Gateway
+![img_13.png](img_13.png)
+
+### Amazon S3 File Gateway
+- 可以配置s3的桶可以用NFS和SMB协议进行访问
+- 最近被使用的数据被存还在file gateway
+- 指出S3 standard，S3 standard IA， s3 One Zone A，S3 Intelligent Tiering
+- 使用Life policy转移到Glacier
+- 使用每个File GatewayIAM role访问桶
+- SMB协议已经整合了AD（Active Directory）做用户验证
+![img_14.png](img_14.png)
+
+### Amazon FSx File Gateway
+- 原生可以访问Amazon的Windows文件系统
+- 本地缓存经常被访问的数据
+- windows原生兼容（SMB，NTFS，Active Directory）
+- 对于小组共享文件和家庭目录很有用
+![img_15.png](img_15.png)
+
+### Volume Gateway
+- 使用 S3 支持的 iSCSI 协议的块存储
+- 由 EBS 快照支持，可帮助恢复本地卷
+- Cached volumes: 低延迟取访问最近的数据
+- Stored volumes: 整个数据集是在本地，使用定时任务备份到s3
+![img_16.png](img_16.png)
