@@ -59,3 +59,13 @@
 ### SQS在两个app间结偶
 ![img_6.png](img_6.png)
 
+### SQS Security
+- 加密
+  - 使用https api进行传输加密
+  - 使用 KMS 密钥进行静态加密
+  - 如果客户想要在自己的端加密，可以自己加密
+- 访问控制：IAM policy图闺房SQS API的访问
+- SQS Access Policies（类似于s3 bucket policies）
+  - 对于跨账户的SQS访问是有用的
+  - 允许其他服务（SNS，S3）写消息到SQS
+
