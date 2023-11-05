@@ -86,3 +86,55 @@
 - 等待时间介于1-20秒
 - 长轮询优于短轮询
 - 可以在队列级别启用长轮询或者在 API 级别使用 WaitTimeSeconds
+
+### FIFO Queue 先进先出队列
+- 吞吐量有限制：300msg/s 非批量处理。 3000msg/s 批量处理
+- 一次性发送功能（通过删除重复项）
+- 消息被消费者按照顺序处理
+![img_8.png](img_8.png)
+
+### SQS整合ASG
+![img_9.png](img_9.png)
+![img_10.png](img_10.png)
+![img_11.png](img_11.png)
+![img_12.png](img_12.png)
+
+## Amazon SNS
+### 什么是SNS（发布订阅模型）
+- 想要一条消息发送给多消费者
+- 生产者只发送消息到SNS topic
+- 消费者订阅topic
+- 每个订阅topic的消费者会获得所有的信息（最新功能：过滤）
+- 每个topic最多12，500，000个订阅者
+- topic最多100，000个
+![img_13.png](img_13.png)
+![img_14.png](img_14.png)
+
+### SNS整合其他服务
+![img_15.png](img_15.png)
+
+### 怎么publish消息
+- Topic发布（使用SDK）
+  - 创建topic
+  - 创建订阅者
+  - 发送消息到topic
+- 直接发送（针对手机apps SDK）
+  - 创建平台应用
+  - 创建平台endpoint
+  - 发布到平台endpoint
+  - 和Google GSM， Apple APNS，Amazon ADM共同工作。。。
+
+### SNS 安全
+- 加密
+  - 使用 HTTPS API 进行动态加密
+  - 使用 KMS 密钥进行静态加密
+  - 用户如果想，可以在客户端自己加密
+- 访问控制
+  - IAM policies规范SNS api的访问
+- SNS Access Policies（类似于S3bucket policy）
+  - 跨账户访问SNS api
+  - 允许其他服务写入sns topic
+
+
+
+
