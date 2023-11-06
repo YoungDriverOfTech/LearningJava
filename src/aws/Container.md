@@ -13,3 +13,16 @@
 ![img.png](img.png)
 
 ### Docker image存放在哪里
+- docker image 存放在docker仓库中
+- Docker hub
+  - 公有仓库
+- Amazon ECR（Amazon Elastic Container Registry）
+  - 私有仓库
+  - 公有仓库(Amazon ECR Public Galler y https://galler y.ecr.aws)
+
+### Docker vs VM
+- DOcker是有一点虚拟化的技术，但不是完全是
+- 资源和宿主机共享，许多容器在一台服务器
+![img_1.png](img_1.png)
+
+###
