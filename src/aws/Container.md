@@ -25,4 +25,5 @@
 - 资源和宿主机共享，许多容器在一台服务器
 ![img_1.png](img_1.png)
 
-###
+### docker flow
+![img_2.png](img_2.png)
