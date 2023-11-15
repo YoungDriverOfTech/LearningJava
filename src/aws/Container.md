@@ -10,7 +10,7 @@
   - 更容易维护和部署
   - 适配任何语言
 - 使用case：微服务架构，从本地服务器迁移app到aws云
-![img.png](img.png)
+![img.png](container/img.png)
 
 ### Docker image存放在哪里
 - docker image 存放在docker仓库中
@@ -23,8 +23,8 @@
 ### Docker vs VM
 - DOcker是有一点虚拟化的技术，但不是完全是
 - 资源和宿主机共享，许多容器在一台服务器
-![img_1.png](img_1.png)
+![img_1.png](container/img_1.png)
 
 ### docker flow
-![img_2.png](img_2.png)
-![img_3.png](img_3.png)
+![img_2.png](container/img_2.png)
+![img_3.png](container/img_3.png)
