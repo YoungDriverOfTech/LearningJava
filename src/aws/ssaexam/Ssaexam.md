@@ -123,4 +123,27 @@
 - Cold Hard disk drive (sc1)
 
 
-### 22
+### 23 Aurora发生故障转移（failover）的时候，可读副本提升的优先级
+- 首先提升编号最小的
+- 如果编号相同，提升容量大的
+- 如果编号和容量相同，在同一层级中提升任意一个副本
+- 例子
+  - tier-1 (16 terabytes)： 2
+  - tier-1 (32 terabytes)： 1
+  - tier-10 (16 terabytes)： 3
+  - tier-15 (16 terabytes)： 5
+  - tier-15 (32 terabytes)： 4
+ 
+### 24 本地数据传输到aws
+- 本地数据每个70TB,一共有10个，时间紧急
+ - 看到时间紧急 -> AWS site-to-site VPN: 需求紧急，对宽带要求适中，可以容忍网络链接的固有变化
+ - 看到数值接近80TB -> AWS Snowball Edge Storage Optimized devices(80TB的容量)
+
+### 25 GuardDuty & Amazon Inspector
+- GuardDuty:
+  - 监视保护aws account，workloads，s3
+  - 分析由Aws CloudTrail Events，VPC Flow Logs，DNS logs产生的账户和网络数据
+- Inspector
+  - 检查EC2的网络活动 & vulnerabilities
+ 
+### 27 
