@@ -175,4 +175,19 @@
 ### 31 CloudTrail
 - 可以把log发到CloudWatch中，然后cloudWath查看是否有error，然后可以给予metric来进行警告然后通过SNS发送消息
 
-### 32 
+### 32 EBS/EFS/S3 收费问题
+- EFS：$0.30 per GB per month，只需要付使用的量的钱
+- EBS：$0.10 per GB-month of provisioned storage：配置了多少付多少钱
+- S3：$0.023 per GB per month
+- 总的来说S3 < EFS < EBS
+
+### 33 EC2 on demand vs EC2 spot
+- Amazon EC2 Spot 
+  - 实例允许您以比按需价格最高 90% 的价格请求备用 Amazon EC2 计算容量
+  - 容错或无状态工作负载
+  - 灵活的开始，结束时间
+- On-Demand
+  - 无法中断的工作负载
+  - 在EC2上开发或者测试应用程序
+ 
+### 36 
