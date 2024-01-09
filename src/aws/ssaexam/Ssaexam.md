@@ -146,4 +146,33 @@
 - Inspector
   - 检查EC2的网络活动 & vulnerabilities
  
-### 27 
+### 27 EC2 High performance computing
+- 看到HPC -> low network latency & high network throughput
+- Cluster placement group: 把实例放在了一个AZ中，减少了网络延迟，提高了网络吞吐
+- A partition placement group: 在一个region中的不同AZ来部署，通常由大型分布式和复制工作负载使用，例如 Hadoop、Cassandra 和 Kafka。但是没有低延迟
+- A spread placement group: 每个实例都放置在不同的机架上，每个机架都有自己的网络和电源。 这些实例放置在不同的底层硬件上，以减少相关故障。 每个组的每个可用区最多可以有七个正在运行的实例。
+
+### 28 S3 retention period to an object version
+- 可以对S3的object的某个版本设置保留期间retention period
+  - 当显示的（explicitly）的设置保留期限，需要设定***Retain Until Date***
+  - 当使用默认设定的时候，不需要设置
+- 不同的object版本可以有不同的retention period
+
+### 29 有hot/code数据需要分开处理，hot需要并行和分布式的快速处理和存储，cold需要保留，并且低成本快速访问和更新
+- FSx For Lustre
+  - 适用于机器学习，HPC，食品处理，金融建模。可以并行处理和保存文件的高性能文件系统
+  - 可以和S3集成，连接到s3时，会透明的将s3对象呈现为文件，并且允许写会s3
+- Amazon FSx for Windows File Serve
+  - 不允许将 S3 对象呈现为文件，也不允许将更改的数据写回 S3
+- Amazon EMR
+  - 大数据平台，不提供和FSx for Lustre 相同的存储和处理速度
+- AWS Glue
+  - 完全托管的提取、转换和加载 (ETL) 服务，使客户可以轻松准备和加载数据以进行分析。 AWS Glue 作业旨在用于批量 ETL 数据处理。 AWS Glue 不提供与 FSx for Lustre 相同的存储和处理速度
+ 
+### 30 使用S3 TA上传大文件的收费问题
+- Pay only for transfers that are accelerated： 如果上传的时候S3 TA没加速，那就不用付钱
+
+### 31 CloudTrail
+- 可以把log发到CloudWatch中，然后cloudWath查看是否有error，然后可以给予metric来进行警告然后通过SNS发送消息
+
+### 32 
