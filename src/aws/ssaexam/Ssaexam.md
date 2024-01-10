@@ -214,4 +214,9 @@
 - EC2可以跨AZ，Region，VPN访问，前提是建立inter-region VPC peering connection
 - 本地服务器可以访问，前提是建立AWS Direct Connect
 
-### 43 
+### 43 SQS FIFO QPS？
+- SQS FIFO的QPS是300，每秒钟可以处理300条信息
+- SQS FIFO有batch处理模式，如果每10条消息当作一次operation，那么QPS会上涨到3000
+- 如果目标值是1000左右，那么可以把4条消息当作一次oepration，那么每秒钟就可以处理1200条消息
+
+### 44 
