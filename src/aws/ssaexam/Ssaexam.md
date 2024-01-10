@@ -190,4 +190,28 @@
   - 无法中断的工作负载
   - 在EC2上开发或者测试应用程序
  
-### 36 
+### 38 EC2 Instance Pricing model
+- On-Demand: 按照小时或者秒收费，便宜。可以使用dev环境，比如dev环境每天只开启8个小时
+  - 成本低，无需提前付款，和长期承诺
+  - 短期应用程序，不可预测或者流量巨大的APP
+  - APP首次在AWS是进行测试的时候选择这个
+- Savings Plans(Reserved Instances): 最高减少on-demand的成本到72%，但是需要预定1或者3年，适用于prod环境
+  - 承诺长期使用EC2的APP
+  - 希望利用最新计算产品同时继续省钱的用户
+- EC2 Spot Instances: 利用 AWS 云中未使用的 EC2 容量，并且与按需价格相比可享受高达 90% 的折扣
+  - 能容错的APP（出错了也没事，能自己恢复），或者无状态的服务
+  - 可以在异构的硬件上面运行的APP
+  - 灵活的开始和结束时间
+
+### 41 节流（throttling）请求，保护APi的手段
+- API Gateway: 使用令牌桶算法限制对您的 API 的请求，其中令牌计入请求
+  - API Gateway 对您账户中所有 API 的稳态速率和突发请求提交设置了限制。 在令牌桶算法中，突发就是最大桶大小
+- SQS: 消息队列，把请求存入队列，然后APP慢慢处理
+- Kinesis: 提供实时的流的存储，处理服务
+
+### 42 电子表格(spreadsheet)被保存一个region的EFS里，其他region也想直接访问，进行共同读写，怎么办？
+- EFS是一个region的服务，数据会被保存在多个AZ
+- EC2可以跨AZ，Region，VPN访问，前提是建立inter-region VPC peering connection
+- 本地服务器可以访问，前提是建立AWS Direct Connect
+
+### 43 
