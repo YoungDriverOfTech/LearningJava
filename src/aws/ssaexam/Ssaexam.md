@@ -219,4 +219,18 @@
 - SQS FIFO有batch处理模式，如果每10条消息当作一次operation，那么QPS会上涨到3000
 - 如果目标值是1000左右，那么可以把4条消息当作一次oepration，那么每秒钟就可以处理1200条消息
 
-### 44 
+### 53 AWS Shield多账户合并计费
+- 如果多个AWS账户在一个Oranization下面，可以启动合并计费(Consolidated billing)，这样的话只用出一分钱
+
+### 54 给ASG的某个instance打补丁，导致被健康检查标记为unhealthy,然后新的实例被启动了
+- 可以将处于 InService 状态的实例置于 Standby 状态，更新某些软件或对实例进行故障排除，然后将实例返回到服务状态。处于备用状态的实例仍然是 Auto Scaling 组的一部分，但它们不会主动处理应用程序流量。
+- 暂停 Auto Scaling 组的 ReplaceUnhealthy 进程类型，并将维护补丁应用到实例。 实例准备就绪后，您可以手动将实例的运行状况设置回健康状态并再次激活 ReplaceUnhealthy 进程类型 - ReplaceUnhealthy 进程会终止标记为不运行状况的实例，然后创建新实例来替换它们
+
+### 60 想要访问RDS的OS（operating system）做一些自定义的环境变量和配置
+- RDS本身不可以访问OS（operating system）
+- Amazon RDS Custom XXXX(比如Oracle),可以访问和自定义数据库服务器主机和操作系统
+
+### 61 Lambda并发（concurrency）
+- 默认是1000，如果超过了1000，那么lambda就不会处理被发过来的请求，这时候需要联系AWS support去提高配额
+
+### 62 
