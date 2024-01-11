@@ -233,4 +233,11 @@
 ### 61 Lambda并发（concurrency）
 - 默认是1000，如果超过了1000，那么lambda就不会处理被发过来的请求，这时候需要联系AWS support去提高配额
 
-### 62 
+### 64 游戏公司想要提高全球旗舰应用性能和可用性，支持region级别的故障转移，使用自己自定义的DNS服务
+- AWS Global Accelerator: 看到游戏加速的时候，要想到。 这个适合非HTTP使用案例
+  - 可以通过降低首字节延迟（数据包从客户端到终端节点并再次返回的往返时间）和抖动（数据包的变化）来提高应用程序的性能。
+  - 通过将边缘数据包代理到一个或多个 AWS 区域中运行的应用程序，提高了基于 TCP 或 UDP 的各种应用程序的性能。 Global Accelerator 非常适合非 HTTP 使用案例，例如游戏 (UDP)、IoT (MQTT) 或 IP 语音，以及特别需要静态 IP 地址或确定性快速区域故障转移的 HTTP 使用案例。 
+
+### 65 想要停止GuardDuty，并且删除一切与之有关的数据
+- Disable the service in the general settings： 禁用该服务将删除所有剩余数据，包括您的发现和配置，然后再放弃服务权限并重置服务
+- Suspend the service in the general settings：暂停服务来阻止 Amazon GuardDuty 分析您的数据源。 这将立即停止服务分析数据，但不会删除您现有的发现或配置
