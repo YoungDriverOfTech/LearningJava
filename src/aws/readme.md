@@ -33,7 +33,8 @@
 [Container](./Container.md)
 
 ## SSA Exam
-[ssaexam](./Ssaexam.md)
+[practice 1](./ssaexam/practice1.md)  
+[practice 2](./ssaexam/practice2.md)
 
 
 
