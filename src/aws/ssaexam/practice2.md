@@ -1,2 +1,4 @@
 # Practice 2
-## 1.
+## Points
+
+### 1. 
