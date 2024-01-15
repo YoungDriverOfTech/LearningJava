@@ -57,9 +57,59 @@
 - aws:RequestedRegion： request有ed，是被请求的区域
 - aws:RequestRegion：request没有ed，不是被请求的区域
 
-### 23. 
+### 24. SQS FIFO 多个消费者
+- 在发送消息到SQS时，定义GroupID属性，这样就可以有多个消费者了
+
+### 25. 公司分享保密数据给另一个审查公司，审查公司有自己的AWS账户，并且需要一个数据库的copy，怎么做最安全
+- 创建加密的数据库snapshot，共享这个快照，然后允许审查公司访问KMS的encryption key
+
+### 26. 公司想测试蓝绿部署（想导一部分流量到新app），什么方案最好
+- Amazon Route 53 weighted routing： 容易收到缓存影响，修改了record以后，生效时间不确定
+- AWS Global Accelerator：是一个网络加速服务，它通过AWS全球网络提供以下主要功能，它提供两个静态IP地址，充当单个或多个AW 区域中的应用程序入口点，例如单个或多个AWS区域中的应用程序负载均衡器、网络负载均衡器、弹性 IP 地址或 Amazon EC2 实例，把AWS Global Accelerator当成一个LB，LB可以修改指向，比重指向
+  - 性能提升：最多可将应用程序的网络性能提高60%。
+  - 高可用性：为多区域和多可用区架构提供快速故障转移，确保应用程序的高可用性。
+  - 确定性路由：通过静态公共IP作为应用程序入口点，消除了对DNS缓存的依赖，实现确定性路由。
+  - DDoS防护：在源头更靠近用户的地方保护应用程序免受DDoS攻击。
+  - 此外，AWS Global Accelerator支持在多个AWS区域中的端点，适用于需要静态IP地址或快速区域故障转移的非HTTP用例，如游戏、物联网或VoIP，以及特定需要静态IP地址的HTTP用例
 
 
+### 27. Aurora Architecture
+- todo: 补图  https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Overview.html
+
+### 28. Route53 Record的routing policy
+- Simple routing policy：路有一个域名到单一的资源
+- Failover routing policy：配置故障转移的时候使用
+- Geolocation routing policy：想要根据用户所在位置来路有流量
+- Geoproximity routing policy：具有自己资源所在的位置路有流量
+- Latency routing policy：想要在多个regions提供最佳的latency体验的时候
+- Multivalue answer routing policy：当您希望 Route 53 使用最多随机选择的八个正常记录来响应 DNS 查询时使用。 您可以使用多值应答路由在私有托管区域中创建记录
+- Weighted routing policy：指定的比例将流量路由到多个资源。 您可以使用加权路由在私有托管区域中创建记录
+
+### 29. AWS Certificate Manager(ACM), SSL证书到期预警 - AWS Config
+- AWS Certificate Manager 是一项服务，可让您轻松预置、管理和部署公共和私有的SSL证书
+- AWS Config 提供您的 AWS 账户中 AWS 资源配置的详细视图。 这包括资源如何相互关联以及它们过去的配置方式
+-  您可以利用 AWS Config 托管规则来检查您账户中的任何 ACM 证书是否被标记为在指定天数内过期。 ACM 提供的证书会自动更新。 ACM 不会自动续订您导入的证书。 如果您的证书即将过期，则该规则为 NON_COMPLIANT。
+
+### 30. 本地服务器处在灾难多发地，想要AWS作为failover，要求最小的downtime
+- 设置 Amazon Route 53 故障转移记录。 在 Auto Scaling 组中的 Application Load Balancer 后面的 Amazon EC2 实例上运行应用程序服务器。 设置具有存储卷的 AWS Storage Gateway 以将数据备份到 Amazon S3
+  - Route 53配置DNS failover，转发流量到健康的资源上面
+  - ALB自动转发请求到健康的jinstance上面
+  - AWS Storage Gateway：混合云存储，可以让本地的服务器访问无限的云存储空间
+
+### 31. 研究小组希望，启动EC2时候，需要执行一些辅助软件APP才能启动，想要最大限度的减少程序自举时间
+- EC2 Hibernate
+
+### 32. 本地DB迁移到云DB，为了提升性能和用户体验
+- 就算本地不是MYsql，迁移到云上，可以换成其他的DB的，比如Aurora，Mysql等等
+
+### 37. 一个account的Lambda想要访问另一个account的S3
+- 如果 IAM 角色和存储桶位于不同账户中，则您需要授予 Amazon S3 对 IAM 角色和存储桶policy的权限
+-  Lambda 函数创建的 IAM 角色与存储桶位于同一 AWS 账户中，则您无需同时授予对 IAM 角色和存储桶policy的 Amazon S3 权限
 
 
+### 38. 创建了private hoted zone并且绑定到了VPC上，但是private hosted zone的DNS查询不可用
+- 为private hosted zones启用DNS hostname / DNS resulution（DNS解析）
+  - DNS hostnames / DNS resulution 默认是禁用的
+ 
+### 48. 
 
