@@ -40,9 +40,24 @@
   - Resource: 操作的资源或资源列表。例如，"Resource": "arn:aws:s3:::my_bucket/*"表示允许对名为my_bucket的S3存储桶中的所有对象执行操作，"Resource": ["arn:aws:s3:::my_bucket", "arn:aws:s3:::my_bucket/*"]表示允许对存储桶及其所有对象执行操作。
   - Condition: 附加条件，用于限制语句的适用范围。例如，"Condition": {"IpAddress": {"aws:SourceIp": "192.0.2.0/24"}}表示只有来自IP地址192.0.2.0/24的请求才能匹配该语句。
 
-### 13. 
+### 13. ASG管理不同type的EC2实例（On-demand or Spot）
+- A launch template: 可以使用On-demand和Spot实例，跨实例类型
+- A launch configuration：不可以跨实例类型
 
+### 20. S3跨account访问bucket的文件
+- Amazon S3 Bucket Policies
 
+### 21. 数百台EC2实例同时访问文件，要考虑成本问题
+- Amazon Elastic File System (EFS) Standard–IA storage class：可以绑定到多台EC2上
+  - Amazon S3 Standard–IA 存储类别可降低不每天访问的文件的存储成本。
+  - 它可以在不牺牲 Amazon EFS 提供的高可用性、高耐用性、弹性和 POSIX 文件系统访问的情况下实现这一点。
+  - 如果您需要轻松访问完整数据集并希望自动节省访问频率较低的文件的存储成本，AWS 建议使用标准 IA 存储。
+
+### 22. IAM Policy 视力问题
+- aws:RequestedRegion： request有ed，是被请求的区域
+- aws:RequestRegion：request没有ed，不是被请求的区域
+
+### 23. 
 
 
 
