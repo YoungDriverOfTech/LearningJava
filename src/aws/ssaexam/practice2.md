@@ -111,5 +111,42 @@
 - 为private hosted zones启用DNS hostname / DNS resulution（DNS解析）
   - DNS hostnames / DNS resulution 默认是禁用的
  
-### 48. 
+### 49. 为了维持用户基本满意的服务，至少需要4个实例可用，应该怎么选择
+- 部署实例在2个AZ，每个AZ部署2个实例 -> ❌　一旦某个AZ的实例down了，那么只剩下2个实例提供服务，不能满足最少的4个实例的要求
+- 部署实例在3个AZ，每个AZ部署2个实例 -> ⭕️　一旦某个AZ的实例down了，那么只剩下4个实例提供服务，OK
 
+### 50. DynamoDB
+- 键值对/document数据库，可在任何规模下提供个位数毫秒的性能
+- 完全托管，多region，多master，安全性高的持久型数据库，备份和恢复，内存缓存
+- 看到key-value pairs，首先想到DynamoDB
+
+### 52. EBS root volume在EC2被terminated之后回自动删除，怎么阻止这个默认行为
+- 设置***DeleteOnTermination***属性成 false
+
+### 53. 媒体公司想要建立一个流程把本地的video，同步到EFS上面
+- 已经创建了AWS Direct Connect链接，想要啊APP迁移到AWS上。本地APP每天会将数百个Video写到NFS，迁移后会在安装有EFS的EC2上运行APP。在迁移前，需要建立一个流程从本地把video同步到EFS上
+- 办法：在本地配置AWS DataSync 代理，用AWS Direct Connect connection传输数据到AWS PrivateLink interface VPC endpoint for Amazon EFS, 设置AWS DataSync定时任务，把video发到nfs上
+- 为什么不用：本地 -》 S3 -〉 Lambda —》 NFS  因为绕了好几圈，不是最容易操作的
+
+### 54. ASG没有停止一个不健康的EC2实例
+- 实例没有通过Elastic Load Balancing (ELB)健康检查状态
+  - 默认情况下，当组的运行状况检查配置设置为 EC2 时，Amazon EC2 Auto Scaling 不会使用 ELB 运行状况检查的结果来确定实例的运行状况。
+- 实例可能处于受损状态（Impaired status）
+  - ASG不会立即停止受损状态的EC2，相反会等一段时间等EC2恢复，Amazon EC2 Auto Scaling 还可能会延迟或不终止无法报告状态检查数据的实例。 当 Amazon CloudWatch 中的状态检查指标数据不足时，通常会发生这种情况。
+- 实例的健康检查宽限期（grace period）尚未到期
+
+### 57. 在us-east-1有一个S3，想要在us-west-1也有一个S3，然后数据和east用同样的key加密解密
+- 在 us-east-1 区域中创建一个新的 Amazon S3 存储桶，并启用从该新存储桶到 us-west-1 区域中的另一个存储桶的复制。 使用 AWS KMS 多区域密钥对 us-east-1 区域中的新存储桶启用 SSE-KMS 加密。 将现有数据从 us-east-1 区域中的当前 Amazon S3 存储桶复制到 us-east-1 区域中的新 Amazon S3 存储桶中
+
+### 58. EC2运行在ALB后，最外层有CloudFront，想要吧认证流程结偶，怎么费力最少
+- Use Amazon Cognito Authentication via Cognito User Pools for your Application Load Balancer
+- 为什么是Cognito User Pools 而不是 Identity Pool
+  - User Pools：用户通过可以Cognito或者第三方的认证系统sign in到app
+  - Identity Pool：用户可以获临时的AWS credentials去接入AWS服务，比如s3，dynamodb
+ 
+### 59. 有多个AWS账号在同一个组织下，想要吧多个account的EC2进行私有访问，怎么办
+- 在一个account A中创建一个VPC，使用Resource Access Manager与其他account分享一个或者多个account A的子网
+- Resource Access Manager可以轻松且安全的在一个或者多个account，或者多个aws organization分享Aws的的资源，
+  - 比如AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM 
+
+### 60. 
