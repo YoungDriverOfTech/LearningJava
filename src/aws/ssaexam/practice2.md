@@ -162,3 +162,16 @@
   - 如果有Transit Gateway
     - ![image](https://github.com/YoungDriverOfTech/LearningJava/assets/55799836/7a83601e-8459-4050-a3b4-0a660d192ba5)
 
+### 61. 您的公司每月有一个大数据工作负载，运行时间约为 2 小时，可以有效地分布在多台不同规模、CPU 数量可变的服务器上。 工作负载的解决方案应该能够承受服务器故障
+- Run the workload on a Spot Fleet:　⭕️ Spot fleet可以选择Spot instance pool来满足工作负载要求并且满足target capacity。默认的，Spot fleets会自动替换在Spot fleet中已经被terminated的实例在满足target capacity
+- Run the workload on Spot Instances:　❌ 只有spot fleet可以进行实例的替换调整，单纯一个spot instance的价格，如果不调整，成本会比上面高
+
+### 62. 公司想要在单一租户的硬件上运行app，那个成本最低，可以EC2隔离到耽搁tenant上运行
+- Dedicated Instances：专用与单个硬件上的VPC中运行的EC2实例
+- Dedicated Host：自己专用的无力服务器
+- 不同：Dedicated Instances 比 Dedicated Host要便宜，所以选Dedicated Instances
+
+### 63. 一家分析公司希望提高在 Amazon Elastic File System (Amazon EFS) 上运行的大数据处理工作流程的性能。 Amazon EFS 应使用以下哪种性能模式来满足此要求？
+- EFS只有下面两种perfomance mode，其他出现了都是误导项
+- Max I/O： Highly parallelized applications and workloads, such as big data analysis, media processing, and genomic analysis, can benefit from this mode.
+- General Purpose：latency-sensitive use cases, like web serving environments, content management systems, home directories, and general file serving.
