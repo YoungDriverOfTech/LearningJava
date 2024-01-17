@@ -149,6 +149,12 @@
 - Resource Access Manager可以轻松且安全的在一个或者多个account，或者多个aws organization分享Aws的的资源，
   - 比如AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM 
 
-### 60. 
-![image](https://github.com/YoungDriverOfTech/LearningJava/assets/55799836/f985a87c-a8e6-40cf-823a-1dbf085598d2)
+### 60. 某公司在多个账户中拥有多个 Amazon Virtual Private Cloud (Amazon VPC)，这些 VPC 需要相互连接成星型网络，并通过 AWS Direct Connect 与本地网络连接
+- AWS Transit Gateway 是一项服务，使客户能够将其 Amazon Virtual Private Cloud (VPC) 及其本地网络连接到单个网关。
+- 借助 AWS Transit Gateway，您只需创建和管理从中央网关到网络中每个 Amazon VPC、本地数据中心或远程办公室的单个连接。
+- Transit Gateway 充当枢纽，控制如何在所有连接的网络（充当辐条）之间路由流量。
+  - 如果没有Transit Gateway
+    - ![image](https://github.com/YoungDriverOfTech/LearningJava/assets/55799836/f985a87c-a8e6-40cf-823a-1dbf085598d2)
+  - 如果有Transit Gateway
+    - ![image](https://github.com/YoungDriverOfTech/LearningJava/assets/55799836/7a83601e-8459-4050-a3b4-0a660d192ba5)
 
