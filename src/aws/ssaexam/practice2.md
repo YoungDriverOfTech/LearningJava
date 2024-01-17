@@ -150,3 +150,5 @@
   - 比如AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM 
 
 ### 60. 
+![image](https://github.com/YoungDriverOfTech/LearningJava/assets/55799836/f985a87c-a8e6-40cf-823a-1dbf085598d2)
+
