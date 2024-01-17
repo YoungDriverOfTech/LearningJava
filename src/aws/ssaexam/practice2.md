@@ -147,7 +147,11 @@
 ### 59. 有多个AWS账号在同一个组织下，想要吧多个account的EC2进行私有访问，怎么办
 - 在一个account A中创建一个VPC，使用Resource Access Manager与其他account分享一个或者多个account A的子网
 - Resource Access Manager可以轻松且安全的在一个或者多个account，或者多个aws organization分享Aws的的资源，
-  - 比如AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM 
+  - 比如AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with RAM
+  - ![image](https://github.com/YoungDriverOfTech/LearningJava/assets/55799836/92e2595f-1c34-4f94-ac85-ae0719640691)
+  - ![image](https://github.com/YoungDriverOfTech/LearningJava/assets/55799836/b0ab025b-e312-4d5a-b8ca-859bdc56f365)
+
+
 
 ### 60. 某公司在多个账户中拥有多个 Amazon Virtual Private Cloud (Amazon VPC)，这些 VPC 需要相互连接成星型网络，并通过 AWS Direct Connect 与本地网络连接
 - AWS Transit Gateway 是一项服务，使客户能够将其 Amazon Virtual Private Cloud (VPC) 及其本地网络连接到单个网关。
