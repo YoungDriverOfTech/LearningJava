@@ -45,4 +45,4 @@
 ### 12. 公司想要自定义一个APP，用来process和analyze实时数据
 - Amazon Kinesis Data Streams
 
-### 13. 
+### 13. Network related
