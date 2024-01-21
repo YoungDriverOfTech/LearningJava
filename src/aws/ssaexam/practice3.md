@@ -45,4 +45,35 @@
 ### 12. 公司想要自定义一个APP，用来process和analyze实时数据
 - Amazon Kinesis Data Streams
 
-### 13. Network related
+### 13. Network Address Translation (NAT) instance vs Network Address Translation (NAT) gateway
+- 在public子网的NAT instance和Nat gateway可以让在private子网的instance访问外界IPv4的互联网
+- How NAT Gateway works:
+- ![img_12.png](img_12.png)
+- How NAT Instance works：
+- ![img_13.png](img_13.png)
+- 对比
+- ![img_14.png](img_14.png)
+
+### 14. 使用ECS部署服务，使用ASG自动扩展，使用CloudWatch来触发扩展
+- 配置当CloudWatch alerm‘s的CPU使用到达临界值，让ASG进行scale out
+- ps：这里是CloudWatch alerm‘s的临界值，不是ECS的临界值
+
+### 15. 公司已经给本地data center和aws建立了AWS Direct Connect，想要实现下面诉求（纯粹是英语题）
+- The company wants to be able to resolve Domain Name System (DNS) queries for any resources in the on-premises network from the AWS VPC and also resolve any DNS queries for resources in the AWS VPC from the on-premises network.
+- 想要解析来自AWS针对本地的任何资源的DNS查询，想要解析来自本地针对AWS的任何资源的DNS查询
+- Create an inbound endpoint on Amazon Route 53 Resolver and then DNS resolvers on the on-premises network can forward DNS queries to Amazon Route 53 Resolver via this endpoint
+- ![img_15.png](img_15.png)
+- Create an outbound endpoint on Amazon Route 53 Resolver and then Amazon Route 53 Resolver can conditionally forward queries to resolvers on the on-premises network via this endpoint
+- ![img_16.png](img_16.png)
+
+### 16. 高度可用且容错的解决方案来从源捕获点击流（click stream）事件，然后向下游应用程序提供数据流的并发源（concurrent）
+- Amazon Kinesis Data Streams：对，实时流数据处理，当您需要多个应用程序能够同时使用同一流时（concurrent），建议使用 Amazon Kinesis Data Streams
+- Amazon Kinesis Data Firehose：错，加载流数据到数据存储和数据分析工具上，load流数据到数据存储
+
+### 17. 想要跨账户协调可用区，必须使用
+- AZ ID，可用区ID，是可用区的唯一且一致的标识符。 例如，usw2-az2 是 us-west-2 区域的可用区 ID，它在每个 AWS 账户中具有相同的位置。
+
+### 19. 一个系统有些功能处理快，有些功能处理满，想变成微服务，怎么结偶
+- SQS：Amazon SQS 允许解耦应用程序组件，以便程序组件独立运行和失败，从而提高系统的整体容错能力。能够存储消息并replay它们是解耦系统架构的一个非常重要的功能
+
+### 25. 
