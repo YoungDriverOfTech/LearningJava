@@ -76,5 +76,28 @@
 ### 19. 一个系统有些功能处理快，有些功能处理满，想变成微服务，怎么结偶
 - SQS：Amazon SQS 允许解耦应用程序组件，以便程序组件独立运行和失败，从而提高系统的整体容错能力。能够存储消息并replay它们是解耦系统架构的一个非常重要的功能
 
-### 25. 
+### 25. 在sites之间提供安全的沟通手段 - VPN CloudHub
+- 如果有多个AWS的Site-to-Site的VPN链接，这时候可以使用VPN CloudHub提供一种安全的沟通手段
+- ![img_17.png](img_17.png)
+
+### 27. 公司有一些自己的本地服务器，想要挪到云上。同时一些软件和license也想要在云上继续用
+- Use Amazon EC2 dedicated hosts ⭕️
+  - 在专有的物理机上面launch EC2实例。可以有额外的权限来控制这个服务器
+  - 可以使用现存的软件licenses，比如windows服务器
+- Use Amazon EC2 dedicated instances ❌
+  -  部署在VPC上的硬件上的，专属于一个用户的EC2
+  - 这个实例在物理层面上和其他用户的实例是隔开的，但是和本用户的非dedicated实例，有可能公用hardware
+  - 不能使用几寸的软件licenses
+
+### 28. 公司想要进行HPC工作负载，把这些工作转到AWS上面
+- Elastic Fabric Adapter (EFA)：可以attach到实例上的网络设备，可以进行HPC和机器学习。还提供了ENA的所有功能，外加一个新的操作系统硬件接口，可直接与硬件沟通
+  - ![img_18.png](img_18.png)
+- Elastic Network Interface (ENI)：就是一个VPC中存在的虚拟网卡，可以attach到实例上，也可以从实例上取下来，安到别的实例上。但是执行HPC，不够看
+- Elastic Network Adapter (ENA) ：提供加强办网络，可以执行HPC。但是功能没有EFA全，有EFA选EFA，无EFA选ENA
+
+### 30. 公司在不同的region有想要upload/download video，最大的文件，能到达10GB，怎么加快速度，提升体验
+- Amazon S3 Transfer Acceleration (Amazon S3TA)： ⭕️
+- Amazon CloudFront：❌，只有object的大小是小于1GB的时候可以使用
+
+### 32. 
 
