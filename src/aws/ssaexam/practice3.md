@@ -100,5 +100,5 @@
 - Amazon CloudFront：❌，只有object的大小是小于1GB的时候可以使用
 
 ### 32. EC2 launch configuration
-
+- configuration
 
