@@ -140,3 +140,59 @@
 - 这些部分来个不同的国家分布在不同的aws regions，公司想建立一套资源配置逻辑，然后每个部门都用这套逻辑，以便每个资源都遵循预定义的配置，例如使用特定类型的 Amazon EC2 实例、AWS Lambda 函数的特定 IAM 角色等
 - Answer：使用 AWS CloudFormation StackSets 跨 AWS 账户和区域部署相同的模板
 
+### 45. 把静态内容从EC2移动到S3+cloudFront上，之前有security group，只允许一部分ip，移动完之后，也必须同样操作
+- 配置源访问身份 (OAI Origin access identity) 并将其与 Amazon CloudFront 分配关联。 在 Amazon S3 存储桶策略中设置权限，以便只有 OAI 可以读取对象
+- 创建 AWS WAF ACL 并使用 IP 匹配条件仅允许来自特定IP 的流量。 将此新的 AWS WAF ACL 与 Amazon CloudFront 分配相关联
+
+### 48. 关于EC2镜向 AIM真确的事儿
+- 可以跨账户拷贝
+- 可以跨region拷贝
+- 加密拷贝
+- ![img_22.png](img_22.png)
+
+### 50. 3个az各有public/private子网，现在想让private实例链接网络
+- 分别在3个AZ建立NAT网关，为每个AZ创建一个custom路由表去转发non-local流量到NAT网关
+- 您可以使用网络地址转换 (NAT) 网关使私有子网中的实例能够连接到互联网或其他 AWS 服务，但阻止互联网发起与这些实例的连接。
+![img_23.png](img_23.png)
+
+### 52. 公司想管理多个部门的aws account的资源（EC2，db）想要一共一个shared和centrally-managed vpcc给所有部门的用，他们的app也能有更高层级的互联
+- 使用vpc sharing去share一个或者多个子网（**注意：只能是子网，不能是vpc**）给其他的aws account，他们同属于一个parent的organization
+  - VPC sharing允许多个account将自己的app资源（ec2，db，redshift，lambda）创建到共享和集中管理的VPC中
+  - 在同一个organizaiton下，VPC的root账户分享一个或者多个子网给其他的participant account
+    - participant account可以CURD自己的资源
+    - participant account不可以CURD其他账户的资源
+
+### 55. mysql太慢，想要完全托管，自动扩展的RDB
+- Amazon Aurora Serverless OK
+- Amazon Aurora NG，不能自动扩展，也不是完全托管
+
+### 56. 公司把数据存在s3，想要防止恶意的activity和识别sensitive信息
+- GuardDuty： 防止恶意攻击
+- Macie： 识别敏感信息
+
+### 57. 程序由 yourapp.provider.com 上的提供商托管，想要用户通过www.your-domain.com（由route 53管理）域名来访问系统
+- CNAME record：对一个域名的查询（比如：acme.example.com）映射到另一个域名（比如example.com 或 example.net）或子域（acme.example.com 或 zenith.example.org）
+  - PS：不允许为根域名叉棍见CNAME（比如，不能为example.com，但是可以为www.example.com、newproduct.example.com创建）
+- Alias：别名记录可让您将流量路由到选定的 AWS 资源，例如 Amazon CloudFront 分配和 Amazon S3 存储桶。 它们还允许您将流量从托管区域中的一条记录路由到另一条记录。 第三方网站不符合这些条件，因为我们无法控制这些网站。 “别名记录”不能用于将一个域名映射到另一个域名。
+
+### 60. 使用SQS为系统结偶，但是不想访问SQS的时候走公网
+- VPC endpoint：使用VPC endpoint可以从VPC直接连接到SQS，而不需要共有ip，也不需要走共有网络
+- vpc endpoint由aws private link提供，这是一种高度可用、可扩展的技术，使您能够将 VPC 私下连接到支持的 AWS 服务
+
+### 61. 混合云，想要创建一个web log归档的解决方案，只有被访问频繁的log作为缓存是可用的，其他所有的log备份在s3
+- 使用 AWS Volume Gateway -  Cached Volume - 在本地存储最常访问的日志以实现低延迟访问，同时将包含所有日志的完整卷存储在其 Amazon S3 服务存储桶中
+
+### 62. 发送消息到SQS时候，推迟几秒钟
+- 使用延迟队列将新消息传递到队列的时间推迟几秒钟
+
+### 63. 公司想要review所有资源的configurations，确保满足合规的要求，也要能看到资源的configuration的历史
+- AWS Config：允许去assess，audit和evaluate AWS资源的配置。也可以review configuration和和aws 资源之间的关系的历史，可以看到资源配置的细节
+- ![img_24.png](img_24.png)
+
+### 64. 想要从本地同步数据到Amazon S3, Amazon Elastic File System (Amazon EFS), and Amazon FSx for Windows File Server easily, quickly, and cost-effectively.
+- 使用 AWS DataSync 自动化并加速向给定 AWS 存储服务的在线数据传输
+- AWS DataSync 完全自动化并加速将大型活动数据集迁移到 AWS，速度比命令行工具快达 10 倍。 它与 Amazon S3、Amazon EFS、Amazon FSx for Windows File Server、Amazon CloudWatch 和 AWS CloudTrail 原生集成，可提供对存储服务的无缝、安全访问以及对传输的详细监控。
+- AWS DataSync 完全自动化数据传输。 它具有重试和网络弹性机制、网络优化、内置任务计划、通过 DataSync API 和控制台进行监控以及 Amazon CloudWatch 指标、事件和日志，可提供传输过程的精细可见性。 AWS DataSync 在传输期间和传输结束时执行数据完整性验证。
+- ![img_25.png](img_25.png)
+
+
