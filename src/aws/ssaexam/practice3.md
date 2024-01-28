@@ -100,5 +100,43 @@
 - Amazon CloudFront：❌，只有object的大小是小于1GB的时候可以使用
 
 ### 32. EC2 launch configuration
-- configuration
+- 当configuration指定的EC2实例类型（dedicated or shared）和vpc默认的类型不一样的时候，有限使用configuration
+- ![img_19.png](img_19.png)
+
+### 34. 使用cloudwatch自动触发修复受损的EC2，在EC2恢复之后，什么不变
+- instance ID, private IP addresses, Elastic IP addresses, and all instance metadata
+- public IPv4 address
+
+### 35. Service Control Policies(SCPs) 组织中所有账户的最大可用权限进行集中控制
+- 如果一个user或者role有一个IAM权限policy，这个policy既没有被允许执行某个动作，也没有明确拒绝可以执行这个动作，则默认不能执行这个动作
+- SCP影响所有的users和roles，包括root
+- SCP不影响任何服务相关（service-linked）role
+
+### 37. 复制来自不同数据库的数据，传输到Redshift
+- AWS Database Migration Service 可帮助您快速、安全地将数据库迁移到 AWS。迁移过程中，最大程度减少以来数据库和程序的停止时间。可以将数据传输到Redshift和S3，将数据整合到PB级别的数据库中
+- ![img_20.png](img_20.png)
+- Amazon Redshift是一个完全托管的，petabyte-scale级别的数据仓库。
+- 在数据库迁移到 Amazon Redshift 期间，AWS DMS 首先将数据移动到 Amazon S3 存储桶。 当文件驻留在 Amazon S3 存储桶中时，AWS DMS 会将它们传输到 Amazon Redshift 数据仓库中的正确表。
+
+### 40. 关于spot实例
+- 一个spot实例请求既可以是one-time也可以是persistent，如果请求是persistent，
+  - 在spot实例被interrupted之后，请求会再次开启
+  - 并且stop了实例，则request只会在重新start spot实例后开启
+- ![img_21.png](img_21.png)
+- spot fleet通过在实例被terminated之后发布替换的实例，来维持目标数量
+- 当cancle一个或者的spot request的，不会terminal 关联（associated）的实例
+
+### 41. 数据库迁移，可以处理复杂的db配置，比如secondary indexes, foreign keys, and stored procedures
+- AWS Schema Conversion Tool (AWS SCT)
+- AWS Database Migration Service (AWS DMS)
+- Basic Schema Copy ❌　只能做简单的test，不能处理secondary indexes, foreign keys, and stored procedures
+
+### 43. 零售公司网站的数据库后端托管在 Amazon RDS for MySQL 上，具有一个主实例和三个只读副本以支持读取可扩展性。 该公司强制要求只读副本落后主实例的时间不得超过 1 秒，以提供最佳的用户体验。 在流量高峰期间，只读副本会进一步落后，导致搜索产生不一致的结果，从而导致糟糕的用户体验
+- 设置从 Amazon RDS MySQL 到 Amazon Aurora MySQL 的数据库迁移。 将 MySQL 只读副本替换为 Aurora 副本。 配置 Aurora Auto Scaling
+- > Aurora 具有分布式、容错和自我修复的存储系统，该系统与计算资源分离，并且每个数据库实例可自动扩展到 128 TiB。 它通过最多 15 个低延迟只读副本、时间点恢复、持续备份到 Amazon Simple Storage Service (Amazon S3) 以及跨三个可用区 (AZ) 的复制来提供高性能和可用性。
+- > 由于 Amazon Aurora 副本与同一 AWS 区域中的主实例共享相同的数据量，因此几乎不存在复制延迟。 副本延迟时间为 10 毫秒（与 MySQL 只读副本的复制延迟数秒相比）。 因此，这是确保只读副本落后主实例不超过 1 秒的正确选择。
+
+### 44. 公司想建立aws organization去管理一些部门的account
+- 这些部分来个不同的国家分布在不同的aws regions，公司想建立一套资源配置逻辑，然后每个部门都用这套逻辑，以便每个资源都遵循预定义的配置，例如使用特定类型的 Amazon EC2 实例、AWS Lambda 函数的特定 IAM 角色等
+- Answer：使用 AWS CloudFormation StackSets 跨 AWS 账户和区域部署相同的模板
 
