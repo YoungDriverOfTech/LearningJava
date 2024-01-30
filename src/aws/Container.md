@@ -109,4 +109,5 @@
   - Capacity Provider和Auto Scaling Group一起使用
   - 当您缺少容量（CPU、RAM...）时添加 EC2 实例
 
-
+### ECS扩展  - CPU使用率例子
+![img_5.png](img_5.png)
