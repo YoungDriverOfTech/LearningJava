@@ -26,7 +26,11 @@
 ![img_1.png](container/img_1.png)
 
 ### docker flow
-![img_2.png](container/img_2.png)
 ![img_3.png](container/img_3.png)
 
-### ECS
+### AWS的Docker容器管理
+- Amazon Elastic Container Service(Amazon ECS): 自己的容器平台，类似dockerhub
+- Amazon Elastic Kubernetes Service(Amazon EKS): aws的k8s
+- AWS Fargate：AWS自己的无服务器容器平台，和ECS和EKS一起使用
+- Amazon Elastic Container Registry（Amazon ECR）: 镜像仓库
+
