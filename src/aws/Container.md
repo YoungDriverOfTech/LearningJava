@@ -34,3 +34,55 @@
 - AWS Fargate：AWS自己的无服务器容器平台，和ECS和EKS一起使用
 - Amazon Elastic Container Registry（Amazon ECR）: 镜像仓库
 
+# ECS
+## ECS Launch type详解
+### EC2 Launch Type
+- 在aws上launch docker容器 = ECS集群上launch Tasks
+- 必须要自己配置和维护infra（EC2 实例）
+- 每个EC2实例必须运行一个ECS Agent，去把自己注册到ECS集群上面
+- AWS负责容器的开始和停止
+- ![img.png](img.png)
+
+### Fargate Launch Type
+- 不用自己配置infra（EC2 实例）
+- 完全是无服务器的
+- 只需要创建task definitions
+- AWS只会根据CPU/RAM来运行ECS tasks
+- 只需要增加tasks的数量就可以进行扩展
+- ![img_1.png](img_1.png)
+
+## ECS IAM Roles
+![img_2.png](img_2.png)
+
+### EC2 Instance Profile(EC2 Launch Type Only)
+- 被ECS agent使用
+- 可以使用API和ECS进行沟通
+- 发送容器log到CloudWatch log
+- 从ECR上面拉取镜像
+- 从Secrets Manager或者SSM Parameter Store中应用敏感数据
+
+### ECS Task Role
+- 允许每个task拥有一个特定的role
+- 给运行的ECS上的service，使用不能的role，也能做到
+- Task的role是被定义在 task definition里面
+
+## ECS LB Integrations
+![img_3.png](img_3.png)
+### ALB：支持绝大多数case
+### NLB：高性能/高吞吐/和AWS private link使用的case
+### CLB：支持但是不推荐（没有advanced features - no fargate）
+
+## ECS - Data Volumes（EFS）
+### 解释
+- 可以mount EFS到ECS的tasks上面
+- 两种launch type都可以使用（EC2 / Fargate）
+- 运行在不同的AZ中的tasks，可以共享EFS中的数据
+- Fargate + EFS = Serverless
+- 使用case：为你的容器提供一个共享的跨AZ的存储
+- **NOTE：S3不能被作为文件系统被mount**
+
+### 图解
+![img_4.png](img_4.png)
+
+
+
