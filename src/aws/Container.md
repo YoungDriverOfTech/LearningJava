@@ -85,4 +85,28 @@
 ![img_4.png](img_4.png)
 
 
+## ECS Auto Scaling
+### 概念
+- 自动伸缩ECS tasks的数量到想要的数字
+- ECS使用**AWS Application Auto Scaling**进行伸缩，可以基于下面的标准
+  - ECS服务Average CPU Utilization
+  - ECS服务Average Memory Utilization - 基于Ram进行伸缩
+  - 每个ALB的请求数量
+- 伸缩策略
+  - Target Tracking：根据特定 CloudWatch 指标的目标值进行扩展
+  - Step Scaling：基于CloudWatch的Alarm进行扩展
+  - Scheduled Scaling：基于特定时间段进行扩展
+- ECS Ser vice Auto Scaling (task level) ≠ EC2 Auto Scaling (EC2 instance level)
+- Fargate Auto Scaling is much easier to setup (because Serverless)
+
+### EC2 Launch Type - 自动扩展
+- 通过添加底层 EC2 实例来适应 ECS 服务扩展
+- 自动扩展组扩展
+  - 基于CPU Utilization扩展你的ASG
+  - 随时间指挥家EC2实例
+- ECS集群Capacity Provider
+  - 为ECS的tasks，自动配置和扩展infra
+  - Capacity Provider和Auto Scaling Group一起使用
+  - 当您缺少容量（CPU、RAM...）时添加 EC2 实例
+
 
