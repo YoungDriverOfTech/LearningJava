@@ -111,3 +111,12 @@
 
 ### ECS扩展  - CPU使用率例子
 ![img_5.png](img_5.png)
+
+### Event Bridge来启动ECS tasks
+![img_6.png](img_6.png)
+
+### Event Bridge Schedule 启动 ECS tasks
+![img_7.png](img_7.png)
+
+### ECS整合SQS
+![img_8.png](img_8.png)
