@@ -35,6 +35,7 @@
 ## SSA Exam
 [practice 1](./ssaexam/practice1.md)  
 [practice 2](./ssaexam/practice2.md)
+[practice 3](./ssaexam/practice3.md)
 
 
 
