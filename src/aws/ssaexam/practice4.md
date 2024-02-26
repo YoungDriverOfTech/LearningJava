@@ -67,4 +67,16 @@ Cost - Low to high
 ### 使用AWS Compute Optimizer   
 计算出最佳的aws compute资源，降本增效  
 
+## 24. S3当作数据源，load到kinesis stream中，最快的方式
+### 使用AWS Database Migration Service (AWS DMS)  
+Leverage AWS Database Migration Service (AWS DMS) as a bridge between Amazon S3 and Amazon Kinesis Data Streams。
+![img_28.png](img_28.png)
 
+不能使用Amazon EventBridge events来触发Lambda，在加载到kinesis streams： 这个方案启动CloudTrail去使用object-level的actions来作为触发器。并且需要大量写代码，所以不是最快的
+
+## 25. NoSQL数据库当作主数据库：single-digit millisecond latency，水平扩展，无服务器
+### DynamoDB  
+单个letter的数字延迟，key-value的document数据库。完全托管，跨区，多master，持久化的NoSql。
+但是不能使用redis集群，因为elastic redis不能当作主数据库
+
+## 26. 
