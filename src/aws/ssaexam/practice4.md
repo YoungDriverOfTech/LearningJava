@@ -118,4 +118,47 @@ Leverage AWS Database Migration Service (AWS DMS) as a bridge between Amazon S3 
 ![img_31.png](img_31.png)
 
 
-## 35. 
+## 35. 看下面问题描述  
+### 看画粗体的部分
+```text
+You have an Amazon S3 bucket that contains files in two different 
+folders - s3://my-bucket/images and s3://my-bucket/thumbnails. 
+When an image is first uploaded and new, it is viewed several times. 
+But after 45 days, analytics prove that image files are on average 
+rarely requested, but the thumbnails still are. After 180 days, 
+you would like to archive the image files and the thumbnails. 
+Overall you would like the solution to remain highly available to 
+prevent disasters happening against a whole Availability Zone (AZ).
+
+How can you implement an efficient cost strategy for your Amazon S3 bucket? (Select two)
+```
+
+### 答案
+```text
+But after 45 days, analytics prove that image files are on average 
+rarely requested, but the thumbnails still are.
+> 根据这个可以得出，45天后要先把images里面的object给移动
+
+After 180 days, 
+you would like to archive the image files and the thumbnails. 
+> 根据这个，180天后images和thumbnails里面的object都需要移动
+
+prevent disasters happening against a whole Availability Zone (AZ)
+> 根据这个，要预防整个az down掉，所以不能到one-zone的class
+
+综上：
+1. 因为过了45天之后要先移动images，所以使用前缀来选择images的object，到s3 standard ia里面
+2. 180天以后需要移动所有的object，所以不用前缀选择，直接移动即可
+```
+
+## 40. 从一个bucket拷贝PB级别的数据到另一个bucket
+### 可行策略
+- S3 sync command
+- S3 batch replication
+
+### 不可能策略
+- S3 console 无法copy PB级别的数据
+
+
+## 43. 
+
