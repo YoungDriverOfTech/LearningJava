@@ -79,4 +79,43 @@ Leverage AWS Database Migration Service (AWS DMS) as a bridge between Amazon S3 
 单个letter的数字延迟，key-value的document数据库。完全托管，跨区，多master，持久化的NoSql。
 但是不能使用redis集群，因为elastic redis不能当作主数据库
 
-## 26. 
+## 26. Saas App把更新feeds给其他的内部的（in-house）和第三方（3rd party）app，怎么实现结偶
+### Event-Bridge和SNS都可以  
+但是SNS不能和第三方整合，只有Event-bridge可以整合第三方，所以选择event-bridge
+![img_29.png](img_29.png)
+
+## 31. DynamoDB两种mode的适用case
+### on-demand mode
+- table的workload未知
+- 不可预测的app流量
+- 更喜欢用多少付多少钱
+
+### provisioned mode
+- 可预测的流量
+- app流量稳定或逐渐增加的app
+- 预测容量需求以控制成本
+
+
+## 32. EC2实例不能被ping，
+### 可能的原因
+- 被安全组block
+- 没有配置internet gateway的路由表
+### internet gateway详解
+- 一个用来沟通在vpc中的ec2实例和网络的vpc组件，主要有2个目的
+  - 给vpc的路由表提供一个可以和外部互联网沟通的目的地/目标（target）
+  - 为已分配公共 IPv4 地址的EC2实例执行网络地址转换 (NAT)
+### 要是在一个vpc中子网的实例连接到网络需要做
+- attach一个internet gateway到vpc上
+- 加一条路由规则在子网的路由表上面，让网络流量可以访问到internet gateway
+- 确保EC2实例有一个全球唯一的ip地址
+- 确保ACL和安全组允许流量进入/发出到EC2实例上
+
+## 33. Snow Family
+### 高安全，便携设备，在edge location收集和处理数据，并且迁移到aws
+![img_30.png](img_30.png)
+
+### Snow Edge-compute optimized有存储集群功能（storage cluster）
+![img_31.png](img_31.png)
+
+
+## 35. 
