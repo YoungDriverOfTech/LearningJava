@@ -160,5 +160,57 @@ prevent disasters happening against a whole Availability Zone (AZ)
 - S3 console 无法copy PB级别的数据
 
 
-## 43. 
+## 43. 关于IAM policy type
+### 官方文章
+```text
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_id-based  
+The following policy types, listed in order from most frequently used to less frequently used, are available for use in AWS. For more details, see the sections below for each policy type.  
+  
+- Identity-based policies – Attach managed and inline policies to IAM identities (users, groups to which users belong, or roles). Identity-based policies grant permissions to an identity.
+  
+- Resource-based policies – Attach inline policies to resources. The most common examples of resource-based policies are Amazon S3 bucket policies and IAM role trust policies. Resource-based policies grant permissions to the principal that is specified in the policy. Principals can be in the same account as the resource or in other accounts.
+
+- Permissions boundaries – Use a managed policy as the permissions boundary for an IAM entity (user or role). That policy defines the maximum permissions that the identity-based policies can grant to an entity, but does not grant permissions. Permissions boundaries do not define the maximum permissions that a resource-based policy can grant to an entity.
+
+- Organizations SCPs – Use an AWS Organizations service control policy (SCP) to define the maximum permissions for account members of an organization or organizational unit (OU). SCPs limit permissions that identity-based policies or resource-based policies grant to entities (users or roles) within the account, but do not grant permissions.
+
+- Access control lists (ACLs) – Use ACLs to control which principals in other accounts can access the resource to which the ACL is attached. ACLs are similar to resource-based policies, although they are the only policy type that does not use the JSON policy document structure. ACLs are cross-account permissions policies that grant permissions to the specified principal. ACLs cannot grant permissions to entities within the same account.
+
+- Session policies – Pass advanced session policies when you use the AWS CLI or AWS API to assume a role or a federated user. Session policies limit the permissions that the role or user's identity-based policies grant to the session. Session policies limit permissions for a created session, but do not grant permissions. For more information, see Session Policies.
+```
+
+### 本题考察 Resource-based policies 有哪些  
+常见的是Amazon S3 bucket policies and IAM role trust policies  
+
+## 46. QuickSight
+### 不能把Kinesis Data Streams当作数据源
+### Amazon QuickSight 无法用于从其来源进行实时流数据分析
+
+## 51. 公司正在使用 AWS Site-to-Site VPN 连接从其本地数据中心安全连接到其 AWS.流量激增，用户的 VPN 连接速度变慢
+### Create an AWS Transit Gateway with equal cost multipath routing and add additional VPN tunnels  
+![img_32.png](img_32.png)
+
+
+## 52. EBS Elastic Volume的数据卷区别  
+考虑降本，可以把io系列换成gp系列  
+![img_33.png](img_33.png)
+
+## 53. 一家社交媒体公司的开发团队想要处理一些复杂的查询，例如“用户 A 的朋友发布的视频的点赞数是多少？”
+### Neptune： 一种图数据库，可以被堪称一种社交网络  
+根据题目是要求找出A的朋友的视频点赞数量，重点是A的朋友，看图下的使用case  
+![img_34.png](img_34.png)
+
+## 60. Cross-zone LB  
+### 没有开启的话，会把每个az分到的50%，再平均往下面分  
+![img_35.png](img_35.png)
+
+## 63. 银行系统访问外部服务的时候，需要把银行系统的ip，加到一个白名单，然后才能访问  
+### 访问完外部的服务，要通过这个白名单的ip把结果外汇，要求是外部能通过这个白名单ip能访问到银行系统
+只能NLB，因为NLB有一个静态ip，可以被放进去。ALB和CLB没有  
+![img_36.png](img_36.png)
+
+## 64. 支持endpoint的AWS 服务
+![img_37.png](img_37.png)
+
+
 
