@@ -60,4 +60,6 @@ The engineering team wants to address any data discrepancies that might arise wh
 ## 17. S3静态网站的endpoint
 ![img_52.png](img_52.png)  
 
-## 18. 
+## 18. 多个消费者程序消费Kinesis Streams的数据，有滞后性  
+默认情况下： 多有的消费者共享2MB/shared的数据，如果想要每个消费者有自己独立的2MB/shard可以用，使用Enhance-fan out功能  
+![img_53.png](img_53.png)
