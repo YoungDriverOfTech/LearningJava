@@ -63,3 +63,29 @@ The engineering team wants to address any data discrepancies that might arise wh
 ## 18. 多个消费者程序消费Kinesis Streams的数据，有滞后性  
 默认情况下： 多有的消费者共享2MB/shared的数据，如果想要每个消费者有自己独立的2MB/shard可以用，使用Enhance-fan out功能  
 ![img_53.png](img_53.png)
+
+## 20. Launch Template(Older Launch Configuration)
+### Auto Scaling 组用于启动 Amazon EC2 实例的实例配置模板  
+可以指定如下的配置
+![img_54.png](img_54.png)  
+
+指定instance type的时候，一旦指定，则不能修改，所以想改的话，只能重新创建一个configuration，
+让asg使用新的configuration，然后删除旧的  
+
+## 22. ELB 发生故障从而导致流量下降时，具有跨 AWS 区域的全球用户的应用程序遇到了问题
+### 怎么减少延迟，并且提供跨区域的故障转移  
+![img_55.png](img_55.png)
+
+## 25. 提高Aurora DB可用性
+### 2个
+- 建立reader的endpoint，读请求走到reader里面
+- 在另外AZ建立replica，提高可用性  
+
+## 28. WAF可以被部署到哪里
+![img_56.png](img_56.png)
+
+## 33. AWS Trusted Advisor  
+AWS Trusted Advisor 是一款在线工具，它借鉴了从 AWS 为数十万 AWS 客户提供服务的汇总运营历史中学到的最佳实践。 AWS Trusted Advisor 会检查您的 AWS 环境并提出节省资金、提高系统性能或缩小安全漏洞的建议。 它会扫描您的 AWS 基础设施，并将其与五个类别（成本优化、性能、安全性、容错、服务限制）的 AWS 最佳实践进行比较，然后提供建议。  
+![img_57.png](img_57.png)
+
+## 35. 
