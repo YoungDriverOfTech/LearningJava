@@ -88,5 +88,4 @@ The engineering team wants to address any data discrepancies that might arise wh
 AWS Trusted Advisor 是一款在线工具，它借鉴了从 AWS 为数十万 AWS 客户提供服务的汇总运营历史中学到的最佳实践。 AWS Trusted Advisor 会检查您的 AWS 环境并提出节省资金、提高系统性能或缩小安全漏洞的建议。 它会扫描您的 AWS 基础设施，并将其与五个类别（成本优化、性能、安全性、容错、服务限制）的 AWS 最佳实践进行比较，然后提供建议。  
 ![img_57.png](img_57.png)
 
-## 35. 
-
+## 35.
