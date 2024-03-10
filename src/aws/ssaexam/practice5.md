@@ -156,3 +156,21 @@ NG：Fargate + Lambda. Fargate适合无服务器的EC2或者容器技术一起�
 
 ## 53. Spread placement group 一共15个实例，每个az分配多少
 ### 一个az最大7个实例，所以需要15=7*2+1，一个3个az才能装下所有的实例
+
+## 56. S3数据合规性  
+### S3 Glacier Vault Lock
+![img_67.png](img_67.png)
+
+## 59. Route53 Routing Policies
+### Failover (Active - Passive) 
+![img_68.png](img_68.png)
+
+## 62. 即使加入了admin group，这个group有AdministratorAccess权限，也有不能做的事
+### 下列事情是只有root用户能做，但是有AdministratorAccess权限也做不到的事情  
+- change account name or root password or root email address
+- change AWS support plan
+- close AWS account
+- enable AWS Multi-Factor Authentication (AWS MFA) on S3 bucket delete
+- create Cloudfront key pair
+- register for GovCloud
+
