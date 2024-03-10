@@ -88,4 +88,71 @@ The engineering team wants to address any data discrepancies that might arise wh
 AWS Trusted Advisor 是一款在线工具，它借鉴了从 AWS 为数十万 AWS 客户提供服务的汇总运营历史中学到的最佳实践。 AWS Trusted Advisor 会检查您的 AWS 环境并提出节省资金、提高系统性能或缩小安全漏洞的建议。 它会扫描您的 AWS 基础设施，并将其与五个类别（成本优化、性能、安全性、容错、服务限制）的 AWS 最佳实践进行比较，然后提供建议。  
 ![img_57.png](img_57.png)
 
-## 35.
+## 35.Object　Encryption
+ ![img_58.png](img_58.png)
+
+## 36. 上传到s3时，发一个通知给SQS
+```text
+Amazon S3 supports the following destinations where it can publish events:
+Amazon Simple Notification Service (Amazon SNS) topic
+Amazon Simple Queue Service (Amazon SQS) queue
+AWS Lambda
+
+Currently, the Standard Amazon SQS queue is only allowed as an Amazon S3
+ event notification destination, whereas the FIFO SQS queue is not 
+ allowed.
+目前只允许SQS/SNS/Lambda，但是不允许FIFO SQS队列
+```
+![img_59.png](img_59.png)
+
+## 39。 Athena & QuickSight
+### Athena
+使用SQL分析存在S3中的数据
+![img_60.png](img_60.png)
+
+### QuickSight
+一个仪表盘
+![img_61.png](img_61.png)
+
+## 43. 使用命令行访问url获得实例的public ip
+使用下面两个命令可以获得meta-data和user-data数据
+![img_62.png](img_62.png)
+![img_63.png](img_63.png)
+```text
+http://169.254.169.254/latest/meta-data/
+http://169.254.169.254/latest/user-data
+```
+然后要获得public ip就得使用meta-data来获得
+```text
+http://169.254.169.254/latest/meta-data/public-ipv4
+```
+
+## 44. RedShift 一个PostgreSQL数据库，用来做在线分析
+### Redshift Cluster
+![img_64.png](img_64.png)
+
+### 使用快照备份
+![img_65.png](img_65.png)
+
+### Redshift Spectrum
+不加载，直接查询s3的数据
+![img_66.png](img_66.png)
+
+### 案例：
+it公司建立了Redshift作为一个数据仓库，然后把超过一年的数据备份到s3，但是分析团队需要
+这些历史数据做报告，怎么能最小成本的完成。  
+答案：Redshift Spectrum  
+
+## 46. Kinesis Data Firehose  
+一次只能将数据存到一个存储单元中，不能把数据发送给多个消费者，如果有多个消费者的情况，使用streams
+
+## 48. 搭建无服务api
+OK：api gateway + lambda
+NG：Fargate + Lambda. Fargate适合无服务器的EC2或者容器技术一起使用的
+
+## 51. SQS消息被处理失败，怎么解决
+### dead-letter queue
+这个队列可以接受被处理失败的消息
+
+## 53. Spread placement group 一共15个实例，每个az分配多少
+### 一个az最大7个实例，所以需要15=7*2+1，一个3个az才能装下所有的实例
