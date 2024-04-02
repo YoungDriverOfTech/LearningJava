@@ -1,3 +1,1 @@
 # Practice 6
-
-
