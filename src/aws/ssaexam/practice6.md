@@ -55,3 +55,20 @@ AWS内：AWS Glue
 ## 28. Amazon EMR
 ![img_78.png](img_78.png)
 
+## 30. A Spot fleet 
+### 不仅可以有Spot Instances，也可以optionally选择on-demand的实例
+
+## 31. EBS and RAID configuration
+![img_79.png](img_79.png)
+
+## 33. AWS Firewall Manager管理范围
+![img_80.png](img_80.png)
+
+## 34. Amazon Kinesis Data Streams / Amazon Kinesis Data Analytics
+试试处理和分析数据，但是不提供长期的存储，（不想数据库）。如果题目中有出现存储的字样，用Firehose
+
+## 43. ASG的替换EC2 instances策略
+先停止旧的，在开启新的 对的  
+先开启新的，在停止旧的 错误
+
+## 
