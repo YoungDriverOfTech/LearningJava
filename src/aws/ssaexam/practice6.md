@@ -71,4 +71,19 @@ AWS内：AWS Glue
 先停止旧的，在开启新的 对的  
 先开启新的，在停止旧的 错误
 
-## 
+## 47. SSE-S3加密
+每个对象都使用唯一密钥进行加密。 作为额外的保护措施，它使用定期轮换的根密钥对密钥本身进行加密。  
+每个object，都有唯一一个unique key
+
+## 51. EBS attach到多个EC2上，EBS的type是什么？
+![img_81.png](img_81.png)
+
+## 54. 支持replication and archival的缓存
+![img_82.png](img_82.png)
+
+## 55. 传输20PB的文件
+![img_83.png](img_83.png)
+
+## 62. 符合POSIX标准的文件系统  
+![img_84.png](img_84.png)
+
