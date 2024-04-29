@@ -78,3 +78,17 @@ On a database instance running with Amazon RDS encryption, data stored at rest i
 ## Amazon RDS MySQL 存储枯竭
 Enable storage auto-scaling for Amazon RDS MySQL
 
+## Practice 3
+### DynamoDB发现脏数据后回滚
+![img_86.png](img_86.png)
+
+### SecurityGroup不能把Internet Gateway ID 当作target
+一下是可以当作SG目标的资源
+- 单个ip
+- ip范围
+- aws服务的前缀list id
+- 另一个sg
+![img_87.png](img_87.png)
+
+### EC2的tenancy转换
+dedicate 和 host相互转化 OK
