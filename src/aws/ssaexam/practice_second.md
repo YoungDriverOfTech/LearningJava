@@ -19,4 +19,62 @@ AWS Lambda 目前支持每个区域每个 AWS 账户 1000 个并发执行，如�
 - 如果想要一个固定数量：desired
 - 如果想要一个数量范围：min - max
 
-## 
+## Practice 2
+## S3在2个AZ中的桶，一个是另一个的副本，然后必须使用同样的key来加密解密
+Create a new Amazon S3 bucket in the us-east-1 region with replication enabled from this new bucket into another bucket in us-west-1 region. Enable SSE-KMS encryption on the new bucket in us-east-1 region by using an AWS KMS multi-region key. Copy the existing data from the current Amazon S3 bucket in us-east-1 region into this new Amazon S3 bucket in us-east-1 region
+
+在 us-east-1 区域中创建一个新的 Amazon S3 存储桶，并启用从该新存储桶到 us-west-1 区域中的另一个存储桶的复制。使用 AWS KMS 多区域密钥对 us-east-1 区域中的新存储桶启用 SSE-KMS 加密。将现有数据从 us-east-1 区域中的当前 Amazon S3 存储桶复制到 us-east-1 区域中的新 Amazon S3 存储桶中
+
+
+## ASG停止EC2 顺序
+1. on-demand or spot instance
+2. oldest launch template（如果使用了configuration，那么先停止oldest launch configuration）
+3. oldest launch configuration
+4. 下一个费用结算周期最近的实例
+
+## 本地机器和EFS API相连
+To establish a private connection between your virtual private cloud (VPC) and the Amazon EFS API, you can create an interface VPC endpoint. You can also access the interface VPC endpoint from on-premises environments or other VPCs using AWS VPN, AWS Direct Connect, or VPC peering.
+AWS Direct Connect provides three types of virtual interfaces: public, private, and transit.
+
+## RDS副本加密相关
+On a database instance running with Amazon RDS encryption, data stored at rest in the underlying storage is encrypted, as are its automated backups, read replicas, and snapshots. Therefore, this option is correct.
+
+
+## 下列policy代表
+```json
+{
+  // 2 在看这个，只有当条件满足的时候，这个policy才生效
+  // 意味着，当ec2的区域不是us-west-1，这个才生效，和1结合起来就是，
+  // 关闭别的区域的ec2的时候，就生效，
+  // 但是关闭us-west-1的时候，不生效。所以可以关闭us-west-1的实例
+    "Version":"2012-10-17",
+    "Id":"EC2TerminationPolicy",
+    "Statement":[
+        {
+            "Effect":"Deny",
+            "Action":"ec2:*",
+            "Resource":"*",
+            "Condition":{
+                "StringNotEquals":{
+                    "ec2:Region":"us-west-1"
+                }
+            }
+        },
+      // 1 先看这个，代表可以关闭所有的ec2
+        {
+            "Effect":"Allow",
+            "Action":"ec2:TerminateInstances",
+            "Resource":"*",
+            "Condition":{
+                "IpAddress":{
+                    "aws:SourceIp":"10.200.200.0/24"
+                }
+            }
+        }
+    ]
+}
+```
+
+## Amazon RDS MySQL 存储枯竭
+Enable storage auto-scaling for Amazon RDS MySQL
+
