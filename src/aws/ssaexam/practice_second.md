@@ -135,3 +135,5 @@ Using SSL, you can encrypt a PostgreSQL connection between your applications and
 缓存endpoint的response，启用缓存可以
 - 减少接口被调用的数量
 - 默认TTL 300s，最大值3600s
+
+## Practice 5
