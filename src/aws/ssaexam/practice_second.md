@@ -92,3 +92,27 @@ Enable storage auto-scaling for Amazon RDS MySQL
 
 ### EC2的tenancy转换
 dedicate 和 host相互转化 OK
+
+## Practice 4
+### DynamoDB改变了以后，发送email
+使用DynamoDB stream + Lambda。
+![img_88.png](img_88.png)
+![img_89.png](img_89.png)
+
+### identity-based policy vs resource-based policy
+identity-based policy： 就是作用在user/account/organization上面的policy
+resource-based policy： 作用在s3服务或者资源上面的，比如s3 桶和object
+
+以上两种都支持的是trust policy，就是规定哪些人能用哪些服务。哪些服务可以被哪些人或者主体使用
+![img_90.png](img_90.png)
+
+### Disaster Recovery Strategies
+- For Pilot light, RPO/RTO is in 10s of minutes
+- For Backup and Restore, RPO in hours
+- 
+![img_91.png](img_91.png)
+![img_92.png](img_92.png)
+![img_93.png](img_93.png)
+![img_94.png](img_94.png)
+![img_95.png](img_95.png)
+
