@@ -108,11 +108,30 @@ resource-based policy： 作用在s3服务或者资源上面的，比如s3 桶�
 
 ### Disaster Recovery Strategies
 - For Pilot light, RPO/RTO is in 10s of minutes
-- For Backup and Restore, RPO in hours
-- 
+- For Backup and Restore, RPO in hours  
 ![img_91.png](img_91.png)
 ![img_92.png](img_92.png)
 ![img_93.png](img_93.png)
 ![img_94.png](img_94.png)
 ![img_95.png](img_95.png)
 
+
+### Lambda和DB使用用户名和密码相连，怎么提高安全性
+- Attach an AWS Identity and Access Management (IAM) role to AWS Lambda（给lambda一个entity，然后给entity可以连接db的role）
+- Use IAM authentication from AWS Lambda to Amazon RDS PostgreSQL
+![img_96.png](img_96.png)
+
+### 看到异步，缓存图像，压缩，可以优先考虑SQS
+Amazon SQS will allow you to buffer the image compression requests and process them asynchronously. It also has a direct built-in mechanism for retries and scales seamlessly.
+
+### 使用encrypt in transit来加强app连接RDS的安全性
+Using SSL, you can encrypt a PostgreSQL connection between your applications and your PostgreSQL DB instances. You can also force all connections to your PostgreSQL DB instance to use SSL.
+![img_97.png](img_97.png)
+
+注意不能ssh到RDS的实例上去，一旦选项中出现，就是错的
+
+
+### API Gateway Caching
+缓存endpoint的response，启用缓存可以
+- 减少接口被调用的数量
+- 默认TTL 300s，最大值3600s
