@@ -186,4 +186,4 @@ By default, all Amazon DynamoDB tables are encrypted using AWS owned keys, which
 - Streams: OK ,看到多个消费者，multiple，several 要反应过来
 - Firehose: NG
 
-### 
+## Practice 6
