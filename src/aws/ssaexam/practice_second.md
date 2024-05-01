@@ -187,3 +187,16 @@ By default, all Amazon DynamoDB tables are encrypted using AWS owned keys, which
 - Firehose: NG
 
 ## Practice 6
+### ASG的activity区别
+- Rebalancing：先启新的，在杀旧的
+- Scaling activity：先杀旧的，后启新的
+
+### 大数据分析
+- EMR
+- ![img_102.png](img_102.png)
+- GLUE
+- ![img_103.png](img_103.png)
+- Amazon Redshift： Postgre数据库
+
+### AWS Firewall Manager 能配置哪些资源的rule
+![img_104.png](img_104.png)
