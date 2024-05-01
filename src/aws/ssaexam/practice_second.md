@@ -137,4 +137,53 @@ Using SSL, you can encrypt a PostgreSQL connection between your applications and
 - 默认TTL 300s，最大值3600s
 
 ## Practice 5
+### RDS 数据库备份和灾难恢复
+- Use cross-Region Read Replicas
+- Enable the automated backup feature of Amazon RDS in a multi-AZ deployment that creates backups across multiple Regions
+
+注意上面第二点一定是multiple region，不能是single region，因为region down了，就不能恢复了，一定是多region
+
+### S3的object被写入，并且同时被read，怎么避免数据差异
+- A process replaces an existing object and immediately tries to read it. Amazon S3 always returns the latest version of the object
+- 进程替换现有对象并立即尝试读取它。 Amazon S3 始终返回对象的最新版本
+
+### 分析S3的object的工具 Athena
+![img_98.png](img_98.png)
+
+
+### AWS WAF可以被部署到 3A2C
+![img_99.png](img_99.png)
+
+### S3的object的metadata不能被s3加密
+所以metadata不能保存敏感信息  
+object包括：
+- Key – The name that you assign to an object. You use the object key to retrieve the object.
+- Version ID – Within a bucket, a key and version ID uniquely identify an object.
+- Value – The content that you are storing.
+- Metadata – A set of name-value pairs with which you can store information regarding the object.
+- Subresources – Amazon S3 uses the subresource mechanism to store object-specific additional information.
+- Access Control Information – You can control access to the objects you store in Amazon S3.
+
+
+### Dynamo DB 默认加密
+By default, all Amazon DynamoDB tables are encrypted using AWS owned keys, which do not write to AWS CloudTrail logs  
+默认情况下，所有 Amazon DynamoDB 表均使用 AWS 拥有的密钥进行加密，这些密钥不会写入 AWS CloudTrail 日志  
+
+注意：不是下面的3中表述
+> By default, all Amazon DynamoDB tables are encrypted under AWS managed Keys, which do not write to AWS CloudTrail logs  
+> By default, all Amazon DynamoDB tables are encrypted under Customer managed keys, which do not write to AWS CloudTrail logs  
+> By default, all Amazon DynamoDB tables are encrypted using Data keys, which do not write to AWS CloudTrail logs  
+
+
+### CloudWatch Alarms的适用target
+![img_100.png](img_100.png)
+
+### Aurora没有standby DB选项
+只能建立read replica，主数据库down的时候会自动failover  
+![img_101.png](img_101.png)
+
+### Kinesis 支持多个consumer
+- Streams: OK ,看到多个消费者，multiple，several 要反应过来
+- Firehose: NG
+
 ### 
