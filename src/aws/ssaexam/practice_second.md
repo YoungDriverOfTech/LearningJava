@@ -200,3 +200,14 @@ By default, all Amazon DynamoDB tables are encrypted using AWS owned keys, which
 
 ### AWS Firewall Manager 能配置哪些资源的rule
 ![img_104.png](img_104.png)
+
+
+### 只有单个实例的app，灾难恢复
+- 创建EIP（elastic IP address）并且使用user-data script绑定到EC2上
+- 赋予ec2正确的role去使用api call（完成上面的绑定）
+- 设置asg的min，max，desire都是1
+
+使用ALB，也能做到，但是因为只有一个实例，所以没必要使用ALB
+
+
+### 
