@@ -86,4 +86,3 @@ AWS内：AWS Glue
 
 ## 62. 符合POSIX标准的文件系统  
 ![img_84.png](img_84.png)
-
