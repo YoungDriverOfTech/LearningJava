@@ -59,4 +59,7 @@
 [SpringCloud](./src/springcloud)
 
 # Multi Thread
-[Multi Thread](./src/multiThread)
+[Multi Thread](https://github.com/YoungDriverOfTech/multi-thread-learning)
+
+# Nginx
+[Nginx](./src/nginx)
