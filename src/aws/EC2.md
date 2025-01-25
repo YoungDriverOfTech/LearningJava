@@ -38,6 +38,7 @@
 - 访问公网IP，可以看到之前在user data里面执行脚本生成的html的文件
 ![img_7.png](images/iimg_7.png)
 
+
 ## EC2实例的类型
 ### Overview
 - 可以在这个网站查看EC2实例的类型： https://aws.amazon.com/cn/ec2/instance-types/
