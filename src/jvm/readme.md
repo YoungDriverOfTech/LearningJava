@@ -242,7 +242,7 @@ java -Xms4g -Xmx4g -Xmn2g -XX:+PrintGCDetails -XX:+UseParallelGC -XX:SurvivorRat
 
 ---
 
-### 6. **总结**
-
+### 6. **总结**  
 通过调整新生代的大小，可以减少 Minor GC 的频率，降低 GC 对系统性能的影响，从而提高系统的稳定性和吞吐量。
 合理的新生代大小需要根据应用程序的对象分配模式和负载情况进行调整，并结合 GC 日志和性能监控工具进行验证。
+
