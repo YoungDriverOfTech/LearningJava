@@ -64,5 +64,5 @@
 # Nginx
 [Nginx](./src/nginx)
 
-# 数据库设计
+# 数据库设计(分库分表)
 [数据库设计](./src/DB-Design)
